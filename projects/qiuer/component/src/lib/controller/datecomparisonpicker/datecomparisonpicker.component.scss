@@ -1,0 +1,36 @@
+:host {
+
+  .example-form-field {
+    cursor: pointer;
+  }
+
+  .hoverClass:hover {
+    .suffixContent_ {
+      top: -40px;
+    }
+  }
+
+  .suffixView_ {
+    display: inline-block;
+    height: 33px;
+    width: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .suffixContent_ {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transition: all .2s;
+    top: 0px;
+    align-items: center;
+  }
+
+  .suffixClear_ {
+    height: 2em !important;
+    width: 2em !important;
+    line-height: 33px;
+  }
+
+}

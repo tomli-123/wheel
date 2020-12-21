@@ -1,0 +1,31 @@
+<div class="upload_content" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <!-- <input [formControl]="searchInput"> -->
+  <div ng2FileDrop (onFileSelected)="onFileSelected($event)"
+    [ngClass]="{'nv-file-over': hasBaseDropZoneOver, 'isDisabled': disWatch}"
+    (fileOver)="fileOverBase($event);afterSel()" (onFileDrop)="onFileSelected($event)" [uploader]="upload"
+    class="drop-zone drop-container">
+
+    <p>
+      拖动文件到此处 或
+      <label class="upload-button">
+        <input *ngIf="!issingle" type="file" ng2FileSelect (onFileSelected)="onFileSelected($event)"
+          [uploader]="upload" [disabled]="disWatch" multiple (click)="afterSel()">
+        <input *ngIf="issingle" type="file" ng2FileSelect (onFileSelected)="onFileSelected($event)"
+          [uploader]="upload" [disabled]="disWatch" (click)="afterSel()"> 选择文件
+      </label>
+      上传
+    </p>
+
+    <div class="upload_mask" *ngIf="disWatch"></div>
+
+  </div>
+
+
+  <!-- <div style="position: relative;">
+    <div class="a-upload primary" [ngClass]="{'disBtn': disWatch}">
+      <span>选择文件</span>
+      <input type="file" ng2FileSelect (onFileSelected)="onFileSelected()" [uploader]="upload" [disabled]="disWatch"
+        multiple (click)="afterSel()">
+    </div>
+  </div> -->
+</div>

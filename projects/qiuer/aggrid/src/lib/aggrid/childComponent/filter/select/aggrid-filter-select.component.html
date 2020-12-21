@@ -1,0 +1,14 @@
+<mat-form-field class="formField" [ngStyle]="{'width':tip?'90%':'100%'}" [ngClass]="{'noPaddingRight':tip}"
+    [title]="formControl.value?formControl.value[_valueType.label]:''">
+    <mat-select [formControl]="formControl">
+        <mat-option *ngIf="emptyLabel">{{emptyLabel}}</mat-option>
+        <mat-option *ngFor="let item of options" [value]="item">
+            <span>{{item[_valueType.label] || item}}</span>
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<button *ngIf="tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="tip"
+[matTooltipClass]="{'pre-line':true}">
+<mat-icon class="qf icon-help"></mat-icon>
+</button>

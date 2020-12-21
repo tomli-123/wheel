@@ -1,0 +1,54 @@
+<div class="procContent">
+  <div class="frameDiv">
+    <!--  -->
+    <div class="process_query">
+      <div *ngIf="_fs.getInfoState(!_fs.leftContentShow)" class="leftMask"></div>
+      <div class="queryContent">
+        <div #infoEle class="cards content-left"
+          [@leftMask]="_fs.getInfoState(_fs.leftContentShow) ? 'hidden' : 'show'">
+
+          <!-- 总览 overview 开始 -->
+          <dynamic-container [metadata]="_overviewMetadata" [parent]="_self()"></dynamic-container>
+          <!-- 总览 overview 结束-->
+
+          <!-- 审批单、流程图   开始-->
+          <div class="approvalBox">
+            <mat-card
+              [ngStyle]="{height: _fs.getInfoState(!_fs.leftContentShow) ? 'calc(100% - 35px)' : 'calc(100% - 25px)'}">
+
+
+              <!-- 审批单、流程图  container-->
+              <approvalList-container [states]="states" [scope]="scope"></approvalList-container>
+
+            </mat-card>
+          </div>
+          <!-- 审批单、流程图   结束-->
+
+        </div>
+
+        <!-- 流程表单 开始-->
+        <div #formEle class="cards content-right">
+          <mat-card class="rightForm">
+
+            <!-- 流程表单 container -->
+            <dynamic-container [metadata]="_formChild" [parent]="_self()">
+
+            </dynamic-container>
+          </mat-card>
+        </div>
+        <!-- 流程表单 结束-->
+
+        <!-- 按钮 -->
+        <div [ngClass]="getButtonLayout()?'btn-fixed':'btn-float'">
+          <ng-container *ngIf="_buttonMetadata">
+            <dynamic-container [metadata]="_buttonMetadata" [parent]="_self()">
+
+            </dynamic-container>
+          </ng-container>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="dlg-body">
+  <div mat-dialog-title class="dlg-title">
+    <h4 class="title" [title]="title">{{title}}</h4>
+    <span fxFlex></span>
+    <button mat-button class="closeDialog" (click)="close(-1)">
+      <mat-icon class="qf icon-close"></mat-icon>
+    </button>
+  </div>
+  <mat-dialog-content class="dlg-content">
+
+    <div [class]="dialogMetadata.buttonChild ? 'dlg-hasFooter' : 'dlg-noFooter'">
+
+      <!-- class="dlg-content"  -->
+      <!-- 解决图片首次加载时图片渲染慢 露出下层的 content 内容问题 -->
+      <div [@fadeout]="_showMaskImg?'show':'hidden'" class="main_mask">
+         <svg width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-square" style="background: none;"><g transform="translate(20 20)"><rect x="-15" y="-15" width="30" height="30" fill="#ea4335" transform="scale(0.818809 0.818809)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.4s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(50 20)"><rect x="-15" y="-15" width="30" height="30" fill="#fbc00e" transform="scale(0.53997 0.53997)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.3s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(80 20)"><rect x="-15" y="-15" width="30" height="30" fill="#607d8b" transform="scale(0.291668 0.291668)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.2s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(20 50)"><rect x="-15" y="-15" width="30" height="30" fill="#fbc00e" transform="scale(0.53997 0.53997)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.3s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(50 50)"><rect x="-15" y="-15" width="30" height="30" fill="#607d8b" transform="scale(0.291668 0.291668)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.2s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(80 50)"><rect x="-15" y="-15" width="30" height="30" fill="#1ca261" transform="scale(0.292003 0.292003)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.1s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(20 80)"><rect x="-15" y="-15" width="30" height="30" fill="#607d8b" transform="scale(0.291668 0.291668)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.2s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(50 80)"><rect x="-15" y="-15" width="30" height="30" fill="#1ca261" transform="scale(0.292003 0.292003)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="-0.1s" repeatCount="indefinite"></animateTransform></rect></g><g transform="translate(80 80)"><rect x="-15" y="-15" width="30" height="30" fill="#4285f4" transform="scale(0.540361 0.540361)"><animateTransform attributeName="transform" type="scale" calcMode="spline" values="1;1;0.2;1;1" keyTimes="0;0.2;0.5;0.8;1" dur="1s" keySplines="0.5 0.5 0.5 0.5;0 0.1 0.9 1;0.1 0 1 0.9;0.5 0.5 0.5 0.5" begin="0s" repeatCount="indefinite"></animateTransform></rect></g></svg>
+      </div>
+
+      <div class="dyn-content">
+        <div dynLayout [layout_data]="contentChild ? contentChild['style'] : null">
+          <dynamic-container [metadata]="contentChild" [parent]="_self()">
+          </dynamic-container>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dlg-footer footLayout" *ngIf="dialogMetadata.buttonChild">
+    <dynamic-container [metadata]="dialogMetadata.buttonChild" [parent]="_self()">
+
+    </dynamic-container>
+  </mat-dialog-actions>
+</div>

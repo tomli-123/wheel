@@ -1,0 +1,182 @@
+<div class="table_content" appClazz [clazz]="_clazz">
+  <div class="loading-shade loading-shade-bgc" *ngIf="_pending">
+    <mat-spinner *ngIf="_pending"></mat-spinner>
+  </div>
+  <div id="view" class="view" maxHeight dialogMaxHeight [isActive]="_isActive" [isDialogActive]="_isDialogActive"
+    [bottomHeight]="bottomHeight" [repaint]="layoutChange" *ngIf="showTable">
+
+    <table mat-table #table [dataSource]="_dataSource" cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)"
+      [cdkDropListDisabled]="!dragDrop||_filterValue.length > 0" matSort (matSortChange)="sortData($event)"
+      [matSortDisabled]="!isSort">
+
+      <ng-container *ngIf="_isSelect && _isMultiple" matColumnDef="_checkbox">
+        <th mat-header-cell *matHeaderCellDef class="column-header check-column" [attr.rowspan]="_displayHeader.length">
+          <mat-icon class="qf icon-filter filterIcon header-icon" *ngIf=" _filterValue.length > 0" matPrefix></mat-icon>
+          <mat-checkbox (change)="$event ? _masterToggle() : null;"
+            [checked]="_selection.hasValue() && _isAllSelected()" [indeterminate]="_indeterminate()">
+          </mat-checkbox>
+
+          <button mat-icon-button color="accent"  [matMenuTriggerFor]="checkbox_menu">
+            <mat-icon class="qf icon-menu"></mat-icon>
+          </button>
+          <mat-menu #checkbox_menu="matMenu">
+            <button mat-menu-item (click)="_chooseAll()">全选</button>
+            <button mat-menu-item (click)="_selectInvert()">反选</button>
+            <button mat-menu-item (click)="_clearExisting()">清空</button>
+          </mat-menu>
+        </th>
+        <td mat-cell (click)="$event.stopPropagation();" (dblclick)="$event.stopPropagation();" *matCellDef="let row"
+          class="check-column">
+          <mat-checkbox (change)="$event ? _click(row) : null" [checked]="_selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container *ngIf="_isSelect && !_isMultiple" matColumnDef="_checkbox">
+        <th mat-header-cell *matHeaderCellDef class="column-header check-column" [attr.rowspan]="_displayHeader.length">
+        </th>
+        <td mat-cell (click)="$event.stopPropagation();" (dblclick)="$event.stopPropagation();" *matCellDef="let row"
+          class="check-column">
+          <mat-radio-button (change)="$event ? _click(row) : null" [checked]="_selection.isSelected(row)"
+            style="padding-left: .5rem"></mat-radio-button>
+        </td>
+      </ng-container>
+
+
+
+      <!-- thead -->
+      <ng-container *ngFor="let tr of _header; index as i">
+        <ng-container *ngFor="let th of tr; index as  j" [matColumnDef]="_getHeadDef(i,j)">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!th.sortable" [attr.rowspan]="th.rowspan"
+            [attr.colspan]="th.colspan" [ngClass]="{'thead-th-border':_header.length>1}">
+            <span>{{th.label}}</span>
+          </th>
+        </ng-container>
+      </ng-container>
+
+
+      <!-- column -->
+      <ng-container *ngFor="let column of _columns; index as i" [matColumnDef]="_getColumnDef(i)">
+
+        <td mat-cell *matCellDef="let row;" [ngSwitch]="column.type"
+          [ngStyle]="{'justify-content': column.align  ,'flex': column.width ,'min-width': column.minWidth}">
+
+          <span *ngSwitchCase="'icon'" class="matCellSpan qf" [ngClass]="_getClass(row,column)"
+            [title]="_getTitle(row,column)" [ngStyle]="_getStyle(row,column)">
+
+          </span>
+
+          <span *ngSwitchCase="'image'" class="matCellSpan " [innerHtml]="_getImage(row,column)|safeHtml"
+            [title]="_getTitle(row,column)" [ngStyle]="_getStyle(row,column)">
+
+          </span>
+
+          <span *ngSwitchCase="'button'">
+            <ng-container *ngFor="let button of column.buttons;">
+              <button mat-raised-button color="accent" *ngIf="button.type === 'raised'"
+                (click)="buttonClick(row,column,$event,button?.onClick)" [matTooltip]="_getButtonTip(row,button)"
+                [matTooltipClass]="{'pre-line':true}" matTooltipPosition="above"
+                [disabled]="buttonFunc(row,column,button?.disabled) " [hidden]="buttonFunc(row,column,button?.hidden)">
+                {{button?.name}}
+                <mat-icon *ngIf="button.icon" [class]="'qf '+ button.icon"></mat-icon>
+              </button>
+
+              <button mat-icon-button color="accent" *ngIf="button.type === 'icon'"
+                (click)="buttonClick(row,column,$event,button?.onClick)" [matTooltip]="_getButtonTip(row,button)"
+                [matTooltipClass]="{'pre-line':true}" matTooltipPosition="above"
+                [disabled]="buttonFunc(row,column,button?.disabled) " [hidden]="buttonFunc(row,column,button?.hidden)">
+                <mat-icon [class]="'qf '+ button.icon"></mat-icon>
+              </button>
+            </ng-container>
+          </span>
+
+          <span *ngSwitchDefault class="matCellSpan" [ngStyle]="_getStyle(row,column)" [title]="_getTitle(row,column)"
+            [innerHtml]="_getValue(row,column)"> </span>
+
+        </td>
+      </ng-container>
+
+
+      <!-- footer -->
+      <ng-container *ngFor="let item of _footer; index as i" [matColumnDef]="_getFooterDef(i)">
+        <td mat-footer-cell *matFooterCellDef="let row;" [ngSwitch]="item.type"
+          [ngStyle]="{'justify-content': item.align}" [attr.colspan]="item.colspan">
+
+          <span *ngSwitchCase="'icon'" class="matCellSpan qf" [ngClass]="_getClass(row,item)"
+            [title]="_getTitle(row,item)" [ngStyle]="_getStyle(row,item)"></span>
+
+          <span *ngSwitchCase="'image'" class="matCellSpan " [innerHtml]="_getImage(row,item)|safeHtml"
+            [title]="_getTitle(row,item)" [ngStyle]="_getStyle(row,item)">
+
+          </span>
+
+          <span *ngSwitchCase="'button'">
+            <button *ngFor="let button of item.buttons;index as btnIndex" [matTooltip]="_getButtonTip(row,item)"
+              [matTooltipClass]="{'pre-line':true}" matTooltipPosition="above"
+              (click)="buttonClick(row,item,$event,button?.onClick)" [disabled]="buttonFunc(row,item,button?.disabled) "
+              [hidden]="buttonFunc(row,item,button?.hidden)" class="mat-raised-button mat-primary"
+              style="margin-right: 5px;" [title]="_getTitle(row,item)">
+              {{button?.name}}
+            </button>
+          </span>
+
+          <span *ngSwitchDefault class="matCellSpan" [ngStyle]="_getStyle(row,item)" [title]="_getTitle(row,item)"
+            [innerHtml]="_getValue(row,item)"> </span>
+        </td>
+      </ng-container>
+
+
+      <!-- table结构 分为header cloumn footer info 单独处理 -->
+
+      <ng-container *ngIf="showTr">
+        <ng-container *ngFor="let tr of _displayHeader">
+          <tr mat-header-row *matHeaderRowDef="tr; sticky: true"></tr>
+        </ng-container>
+      </ng-container>
+
+
+      <tr mat-row *matRowDef="let row; columns: _displayColumns;" class="matRow drop-box" (click)="_toggle(row,$event)"
+        [ngClass]="{'canSelectText':canSelectText,'cantSelectText':!canSelectText}" (dblclick)="_dblclick(row,$event)"
+        cdkDrag></tr>
+
+
+      <tr mat-footer-row *matFooterRowDef="_displayFooter; sticky: true"></tr>
+
+      <ng-container *ngFor="let item of tool; index as i" [matColumnDef]="item">
+        <td mat-footer-cell *matFooterCellDef="let row;">
+          <mat-form-field floatPlaceholder="never">
+            <mat-icon class="qf icon-filter" matPrefix>
+            </mat-icon>
+            <input matInput [placeholder]="item">
+          </mat-form-field>
+        </td>
+      </ng-container>
+      <tr mat-footer-row *matFooterRowDef="tool; sticky: true"></tr>
+    </table>
+  </div>
+
+  <!-- info -->
+  <mat-card #tableFoot [hidden]="!_isToolbar" class="paginatorCon tableFoot">
+    <div class="selNum" *ngIf="_isMsg">
+      <span *ngIf="_selection.selected.length < 1  && _filterValue.length === 0" class="selText">
+        记录数:{{_dataSource.data.length}}
+      </span>
+      <span *ngIf="_selection.selected.length > 0 && _filterValue.length === 0"
+        class="selText">选择：{{_selection.selected.length}}/{{_dataSource.data.length}}</span>
+      <div *ngIf=" _filterValue.length > 0" class="selText">
+        筛选选择:{{_filterSelected.length}}&thinsp;/&thinsp;{{_dataSource.filteredData.length}}&thinsp;({{_selection.selected.length}}/{{_dataSource.data.length}})
+      </div>
+    </div>
+    <mat-form-field id="keywords" *ngIf="_isFilter" [ngClass]="{'filter': _isFilter}"
+      class="fieldInput magnify paginatorField tableFootIpt" floatPlaceholder="never">
+      <mat-icon class="qf icon-filter filterIcon" matPrefix>
+      </mat-icon>
+      <span matPrefix class="matPrefix"></span>
+      <input matInput (input)="_applyFilter($event.target.value)" [placeholder]=" _filterValue.length > 0 ? '' : '筛选'"
+        [(ngModel)]="_filterValue">
+    </mat-form-field>
+    <mat-paginator class="pagin" [hidden]="!_isPaginator" [length]="_dataSource.data.length" [pageSize]="40"
+      [pageSizeOptions]="[10, 20, 40]">
+    </mat-paginator>
+  </mat-card>
+</div>

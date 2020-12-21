@@ -1,0 +1,149 @@
+.dialog_content {
+  position: relative;
+
+  @media (max-width: 900px) and (min-width: 601px) {
+    .topMargin {
+      margin-top: 10px;
+    }
+
+    .margin {
+      margin: 10px 10px 0 10px;
+    }
+
+    .padding {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 1280px) and (min-width: 901px) {
+    .topMargin {
+      margin-top: 14px;
+    }
+
+    .margin {
+      margin: 14px 14px 0px 14px;
+    }
+
+    .padding {
+      padding: 14px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 0;
+
+    .topMargin {
+      margin: 0px;
+    }
+
+    .margin {
+      margin: 0px;
+    }
+
+    .padding {
+      padding: 0px;
+    }
+  }
+
+  @media (min-width: 1281px) {
+    .topMargin {
+      margin-top: 18px;
+    }
+
+    .margin {
+      margin: 18px 18px 0px 18px;
+    }
+
+    .padding {
+      padding: 18px;
+    }
+  }
+
+  .boxing {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    display: block;
+    position: relative;
+    border-radius: 4px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}
+
+.dlg-content {
+  min-height: 120px !important;
+  max-height: 100vh !important;
+}
+
+// .full {
+//   width: 100%;
+//   height: 100%;
+//   max-width: 100vw !important;
+
+// }
+
+// .huge {
+//   width: 85%;
+//   max-width: 100vw !important;
+// }
+
+// .large {
+//   width: 70%;
+//   max-width: 100vw !important;
+// }
+
+// .medium {
+//   width: 55%;
+//   max-width: 100vw !important;
+// }
+
+// .small {
+//   width: 40%;
+//   max-width: 100vw !important;
+// }
+
+// .tiny {
+//   width: 25%;
+//   max-width: 100vw !important;
+
+// }
+
+.height-full {
+  height: calc(100vh - 0px) !important;
+}
+
+.height-huge {
+  height: calc(85vh - 0px) !important;
+}
+
+.height-large {
+  height: calc(70vh - 0px) !important;
+}
+
+.height-medium {
+  height: calc(55vh - 0px) !important;
+}
+
+.height-small {
+  height: calc(40vh - 0px) !important;
+}
+
+.height-tiny {
+  height: calc(25vh - 0px) !important;
+}
+
+@media (max-width: 599px) {
+
+  .huge,
+  .large,
+  .medium,
+  .small,
+  .tiny {
+    width: 100% !important;
+  }
+}
+
+/*特殊的*/
+.panelClass-preview-dialog mat-dialog-container {
+  overflow: hidden;
+  padding: 0;
+}

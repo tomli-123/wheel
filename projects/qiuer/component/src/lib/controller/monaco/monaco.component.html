@@ -1,0 +1,9 @@
+<div class="formField">
+  <p style="font-size: 14px;">{{label}}</p>
+  <div class="monaco_content {{_metadata.isMaxHeight ? 'monaco_content_maxHeight' : ''}}" #monacoContent
+    [ngStyle]="{'height':height +'px'}">
+    <!-- (keydown)="onKeyDown($event)" -->
+    <ngx-monaco-editor #monaco style="height: 100%;" class="editorContent" [options]="monacoConfig"
+      [formControl]="_formControl" (onInit)="monacoInit($event)"></ngx-monaco-editor>
+  </div>
+</div>

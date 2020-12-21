@@ -1,0 +1,14 @@
+<span [matTooltip]="selectTip"  [matTooltipClass]="{'pre-line':true}">
+  <mat-form-field class="formField " style="cursor: pointer;" (click)="openTreeDialog()">
+    <span *ngIf="isMultiSelect &&_formControl.value?.length>0 " style="position: absolute;top:6px;">
+      {{_formControl.value?.length }}个已选</span>
+    <span *ngIf="!isMultiSelect" class="displayName" title="{{displayName}}"> {{displayName}}</span>
+    <mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+    <input matInput style="visibility:hidden" [formControl]="_formControl" >
+    <button mat-button *ngIf="_hasClear && _formControl.value && _formControl.value.length>0" matSuffix mat-icon-button
+      (click)="_formControl.setValue(null);displayName=null; $event.stopPropagation()">
+      <mat-icon class="qf icon-close"></mat-icon>
+    </button>
+    <mat-icon matSuffix class="qf icon-file-tree" aria-label="tree"></mat-icon>
+  </mat-form-field>
+</span>

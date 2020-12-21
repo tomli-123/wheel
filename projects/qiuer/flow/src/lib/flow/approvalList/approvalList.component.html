@@ -1,0 +1,155 @@
+<div class="proc_header_left">
+  <span class="proc_border proc_border_bgcolor"></span>
+</div>
+
+<div class="approval">
+  <mat-tab-group class="printH" [selectedIndex]="selected" (selectedIndexChange)="selectChange($event)">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div [style.opacity]="selected === 0 ? 1 : 0.6">
+          <mat-icon class="qf icon-format-list-numbers proc_border_color approval_Icon"></mat-icon>
+          <span style="font-size:16px;">审批流程</span>
+        </div>
+      </ng-template>
+      <!-- [style.height]="setTabHeight()"  -->
+      <div class="approvalItem" >
+        <mat-accordion [multi]="true">
+          <mat-expansion-panel *ngFor="let list of procItems" [hideToggle]="list.items.length === 0"
+            [disabled]="list.items.length === 0" [expanded]="list.items.length !== 0" >
+            <mat-expansion-panel-header collapsedHeight="30px" expandedHeight="30px" class="">
+              <mat-panel-title>
+                {{list.name}} {{ list['candidatesNode'] ? '（紫色姓名用户为首次阅读用户）' : '' }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div style="position: relative;">
+              <mat-list>
+                <mat-list-item class="approval-item" *ngFor="let item of list.items;index as i"
+                  [ngStyle]="{'background-color': setBgColor(item)}">
+                  <ng-container *ngIf="item.operator">
+                    <div *ngIf="item.unsubmit" class="approval_item_unSubmitted">
+                      <span>未提交</span>
+                    </div>
+                    <!-- 图片 agree/consent-->
+                    <img class="app_img" *ngIf="showFont(item.opinion.value)" [src]="showFont(item.opinion.value)" alt="">
+
+                    <mat-icon class="avatar-icon" mat-list-icon (click)="showUser(item.operator.userid,$event);">
+                      <img class="avatar" [src]="item.operator.avatar" alt="">
+                    </mat-icon>
+                    <div class="approval-item-content">
+                      <h4>
+                        <span class="f14">{{item.operator.name}}</span>
+                        <span *ngIf="!item.unsubmit" [title]="itemInit(item)"
+                          style="margin-left:5px;">{{item.endtime}}</span>
+                        <span *ngIf="item.unsubmit">
+                          <span>创建时间:</span>
+                          <span *ngIf="timeIsStr(item.starttime)" style="margin-left:5px;">{{item.starttime}}</span>
+                          <span *ngIf="!timeIsStr(item.starttime)"
+                            style="margin-left:5px;">{{item.starttime | date:'y/MM/dd HH:mm:ss'}}</span>
+                        </span>
+                      </h4>
+                      <div style="display:flex;">
+                        <div class="f14">
+                          <b *ngIf="item.opinion && !showFont(item.opinion.value)" style="margin-right:10px;">
+                            {{item.opinion.value || ''}}
+                          </b>
+                          {{item.comment}}
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+
+
+                  <ng-container *ngIf="item.candidates">
+                    <div class="approval-todoItem">
+                      <!-- <div class="approval_read" *ngIf="item.reader">
+                        <span class="approval_read_name">{{item.reader.name}}</span>
+                        <span>于</span>
+                        <span style="padding: 0px 10px;">{{item.readtime}}</span>
+                        <div class="approval_read_L">首次阅读</div>
+                      </div> -->
+                      <div class="approval_users">
+                        <!-- <div class="approval_users_title" *ngIf="item.candidates.length !== 0">
+                          <span>候</span>
+                          <span>选</span>
+                          <span>人</span>
+                        </div> -->
+                        <div class="approval_users_list">
+
+                          <div *ngIf="item.candidates.length === 0" class="approval_users_list_none">
+                            没有候选人
+                          </div>
+
+                          <div style="padding-left: 5px;">{{item['name'] || ''}}候选人:</div>
+
+                          <ng-container *ngIf="item.candidates.length !== 0">
+                            <div class="approval_users_list_item" *ngFor="let user of item.candidates;">
+                              <mat-icon class="avatar-icon" mat-list-icon (click)="showUser(user.userid,$event);">
+                                <img class="avatar" [src]="user.avatar || 'assets/img/profile/avatar/null'" alt="">
+                              </mat-icon>
+                              <span [title]="candidateTitle(item, user)" [class]="candidateTitle(item, user) ? 'isReader' : ''">{{user.name}}</span>
+                            </div>
+                          </ng-container>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </ng-container>
+
+
+                </mat-list-item>
+              </mat-list>
+            </div>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div [style.opacity]="selected===1?1:0.6" class="flowImg">
+          <mat-icon style="transform: rotate(90deg);" class="qf icon-source-branch proc_border_color approval_Icon">
+          </mat-icon>
+          <span style="font-size:16px;">流程图</span>
+        </div>
+      </ng-template>
+      <!-- [style.height]="setTabHeight()" -->
+      <div class="approvalItem" style="overflow:auto; text-align: center;">
+        <img [src]="diagram" alt="" *ngIf="diagram">
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="printS printTable" style="display:none;">
+    <table>
+      <tr *ngFor="let list of procItems;index as i">
+        <td style="min-width:100px;text-align: center;">{{list.name}}</td>
+        <td>
+          <div style="padding:5px;position: relative;" *ngFor="let item of list.items;">
+            <ng-container *ngIf="item.operator">
+              <div *ngIf="item.unsubmit" class="printTable_unsubmit">
+                <span>未提交</span>
+              </div>
+              <div *ngIf="item.opinion">
+                <b *ngIf="!showFont(item.opinion.value)">{{item.opinion.value || ''}}</b>
+                <img *ngIf="showFont(item.opinion.value)" [src]="showFont(item.opinion.value)" alt=""
+                  style="vertical-align: middle;margin-bottom: 5px;">
+                <span style="margin-left:15px;">
+                  {{item.comment}}
+                </span>
+              </div>
+
+              <div class="font_right">
+                <span>{{item.operator.name || ''}}</span>
+                <span *ngIf="item.unsubmit">
+                  保存时间：　　{{item.starttime | date:'y/MM/dd HH:mm:ss'}}
+                </span>
+                <span *ngIf="!item.unsubmit">{{item.endtime || ''}}</span>
+              </div>
+            </ng-container>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

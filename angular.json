@@ -1,0 +1,372 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "qiuer-container-ng": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/qiuer-container-ng",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets"
+              ]
+            },
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "./assets/monaco"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/echarts/dist/echarts.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "qiuer-container-ng:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "qiuer-container-ng:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "qiuer-container-ng:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "qiuer-container-ng:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "qiuer-container-ng:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "@qiuer/core": {
+      "projectType": "library",
+      "root": "projects/qiuer/core",
+      "sourceRoot": "projects/qiuer/core/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qiuer/core/tsconfig.lib.json",
+            "project": "projects/qiuer/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/qiuer/core/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qiuer/core/src/test.ts",
+            "tsConfig": "projects/qiuer/core/tsconfig.spec.json",
+            "karmaConfig": "projects/qiuer/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qiuer/core/tsconfig.lib.json",
+              "projects/qiuer/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@qiuer/aggrid": {
+      "projectType": "library",
+      "root": "projects/qiuer/aggrid",
+      "sourceRoot": "projects/qiuer/aggrid/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qiuer/aggrid/tsconfig.lib.json",
+            "project": "projects/qiuer/aggrid/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/qiuer/aggrid/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qiuer/aggrid/src/test.ts",
+            "tsConfig": "projects/qiuer/aggrid/tsconfig.spec.json",
+            "karmaConfig": "projects/qiuer/aggrid/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qiuer/aggrid/tsconfig.lib.json",
+              "projects/qiuer/aggrid/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@qiuer/chart": {
+      "projectType": "library",
+      "root": "projects/qiuer/chart",
+      "sourceRoot": "projects/qiuer/chart/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qiuer/chart/tsconfig.lib.json",
+            "project": "projects/qiuer/chart/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/qiuer/chart/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qiuer/chart/src/test.ts",
+            "tsConfig": "projects/qiuer/chart/tsconfig.spec.json",
+            "karmaConfig": "projects/qiuer/chart/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qiuer/chart/tsconfig.lib.json",
+              "projects/qiuer/chart/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@qiuer/component": {
+      "projectType": "library",
+      "root": "projects/qiuer/component",
+      "sourceRoot": "projects/qiuer/component/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qiuer/component/tsconfig.lib.json",
+            "project": "projects/qiuer/component/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/qiuer/component/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qiuer/component/src/test.ts",
+            "tsConfig": "projects/qiuer/component/tsconfig.spec.json",
+            "karmaConfig": "projects/qiuer/component/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qiuer/component/tsconfig.lib.json",
+              "projects/qiuer/component/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@qiuer/flow": {
+      "projectType": "library",
+      "root": "projects/qiuer/flow",
+      "sourceRoot": "projects/qiuer/flow/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qiuer/flow/tsconfig.lib.json",
+            "project": "projects/qiuer/flow/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/qiuer/flow/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qiuer/flow/src/test.ts",
+            "tsConfig": "projects/qiuer/flow/tsconfig.spec.json",
+            "karmaConfig": "projects/qiuer/flow/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qiuer/flow/tsconfig.lib.json",
+              "projects/qiuer/flow/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@qiuer/markdown": {
+      "projectType": "library",
+      "root": "projects/qiuer/markdown",
+      "sourceRoot": "projects/qiuer/markdown/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qiuer/markdown/tsconfig.lib.json",
+            "project": "projects/qiuer/markdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/qiuer/markdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qiuer/markdown/src/test.ts",
+            "tsConfig": "projects/qiuer/markdown/tsconfig.spec.json",
+            "karmaConfig": "projects/qiuer/markdown/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qiuer/markdown/tsconfig.lib.json",
+              "projects/qiuer/markdown/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "qiuer-container-ng",
+  "cli": {
+    "analytics": "f8db3945-cc56-41f8-85d3-542439b6d4bc"
+  }
+}

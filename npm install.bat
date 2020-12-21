@@ -1,0 +1,1 @@
+npm install --registry http://nexus.gtjaqh.net/repository/npm-group/

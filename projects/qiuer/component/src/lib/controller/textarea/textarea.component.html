@@ -1,0 +1,13 @@
+<mat-form-field class="formField">
+  <mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+  <textarea matInput  [formControl]="_formControl" matTextareaAutosize
+    [matAutosizeMinRows]="_minrows" [matAutosizeMaxRows]="_maxrows">
+    <!-- (change)="_onChange()"  -->
+  </textarea>
+  <mat-error *ngIf="_formControl.hasError('required') &&  requiredMsg">
+    {{requiredMsg}}
+  </mat-error>
+  <mat-error *ngIf="_formControl.hasError('pattern') && patternMsg">
+    {{patternMsg}}
+  </mat-error>
+</mat-form-field>

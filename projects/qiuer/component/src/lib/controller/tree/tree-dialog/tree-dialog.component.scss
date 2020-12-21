@@ -1,0 +1,104 @@
+.treeDialog-content {
+  min-width: 400px;
+  margin: -24px;
+  user-select: none;
+
+  .dlg-title {
+    margin: 0;
+    height: 54px;
+    line-height: 54px;
+    padding: 0 16px;
+  }
+
+  .mat-dialog-title {
+    .dlg-msg {
+      font: 500 16px/30px Roboto, "Helvetica Neue", sans-serif;
+    }
+  }
+  .mat-dialog-title.dlg-header {
+    margin: 0;
+  }
+
+  .mat-button.closeDialog {
+    min-width: auto;
+    padding: 0 5px;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .dlg-header {
+    position: relative;
+    padding: 16px 16px 0;
+
+    .sureBtn {
+      color: #4caf50;
+    }
+
+    .cancelBtn {
+      color: #f44336;
+    }
+  }
+
+  .demo-tree-node-invisible {
+    display: none;
+  }
+
+  .demo-tree-node-nested {
+    padding-left: 40px;
+  }
+
+  // @import '../../../css/commonAddDlg.scss';
+  // * {
+  //   -webkit-touch-callout: none;
+  //   /* iOS Safari */
+  //   -webkit-user-select: none;
+  //   /* Chrome/Safari/Opera */
+  //   -khtml-user-select: none;
+  //   /* Konqueror */
+  //   -moz-user-select: none;
+  //   /* Firefox */
+  //   -ms-user-select: none;
+  //   /* Internet Explorer/Edge */
+  //   user-select: none;
+  //   /* Non-prefixed version, currently*/
+  // }
+
+  //.dlg-body .footLayout {
+  //  // justify-content:space-between;
+  //  display: block;
+  //  padding: 0px 20px;
+  //  margin: 0px;
+  //  height: 60px;
+  //  .btn{
+  //    margin: 12px 0px 12px 10px;
+  //  }
+  //  .left{
+  //    float: left;
+  //  }
+  //  .right{
+  //    float: right;
+  //  }
+  //}
+  .left {
+    position: absolute;
+    left: 20px;
+  }
+
+  .sidenav-search {
+    width: 86%;
+    padding: 0 0 0 16px;
+    font-size: 14px
+  }
+
+  .dlg-footer {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}
+
+#keywords.mat-focused .mat-form-field-label {
+  // visibility: hidden;
+  transform: perspective(100px);
+}

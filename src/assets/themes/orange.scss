@@ -1,0 +1,363 @@
+@import '../../../../node_modules/@angular/material/_theming.scss';
+
+@include mat-core();
+$primary: mat-palette($mat-deep-orange, 600);
+$accent:  mat-palette($mat-amber, 600);
+$warn:    mat-palette($mat-red);
+$theme: mat-dark-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+.dashboardbk {
+  background-color: #ef6c00;
+}
+.searchHeaderBgc {
+  background-color: #ef6c00;
+}
+.dlg-title {
+  background-color: #ef6c00;
+}
+.mat-font-color{
+  color: map-get($mat-dark-theme-foreground,text);
+}
+mat-tree-node:hover{
+  background-color: rgba(255,255,255,0.05);
+}
+.tree-node:hover{
+  background-color: rgba(255,255,255,0.05);
+}
+.funAddDiaTitle {
+  background-color: #b71c1c;
+}
+
+.view .matRow:nth-child(even) {
+  background-color: rgba(48, 48, 48, 0.2)
+}
+
+.view .mat-cell {
+  border-right-color: rgba(255, 255, 255, 0.15) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.view .mat-header-row .mat-header-cell {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.view .mat-row:hover {
+  background-color: rgba(48, 48, 48, 0.6);
+}
+
+// codemirror的样式暂且保留，后面可能还有用
+ .mat-dialog-container .CodeMirror {
+   background-color: #424242;
+    border-bottom: 1px solid #ddd;
+   border-bottom-color: #ddd;
+   color: #ffffff;
+ }
+
+ .mat-dialog-container .CodeMirror-gutters {
+   background-color: #424242;
+   color: #ffffff;
+ }
+
+.searchHeaderBgc .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+.searchHeaderBgc .mat-form-field-placeholder,
+.searchHeaderBgc .mat-focused .mat-form-field-placeholder,
+.searchHeaderBgc .mat-select-arrow,
+.searchHeaderBgc .mat-select-value-text {
+  color: #fff;
+}
+
+.searchHeaderBgc .mat-form-field-ripple,
+.searchHeaderBgc .mat-form-field-underline {
+  background-color: #fff;
+}
+
+.activeRoleBgc {
+  background-color: #303030 !important;
+}
+
+/*form disabled*/
+.mat-form-field-disabled .mat-form-field-underline {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.7) 33%, transparent 0);
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+}
+
+.font-color {
+  color: #fff !important;
+}
+
+.primary {
+  background-color: #ef6c00;
+}
+.firstRow {
+  background-color: #ef6c00;
+}
+
+.accent {
+  background-color: #ffa000;
+}
+
+.warn {
+  background-color: #b71c1c;
+}
+
+.primary-color {
+  color: #ef6c00;
+}
+
+.accent-color {
+  color: #ffa000;
+}
+
+.warn-color {
+  color: #b71c1c;
+}
+/*手机端fn和dc的form主题颜色*/
+@media (max-width: 599px) {
+  .m-form-bgc {
+    background-color: #424242;
+  }
+}
+.row-cutline {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.column-cutline {
+  border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.multiple-filter {
+  height: 48px;
+  width: 100%;
+  display: block;
+  color: #fff;
+  position: sticky !important;
+  top: 0;
+  z-index: 9;
+  background-color: #000;
+}
+
+mat-form-field.multiple-filter mat-checkbox.mat-checkbox {
+  padding: 0 0 0 16px;
+  margin-right: 8px;
+  line-height: 42px;
+}
+
+.multiple-filter .mat-icon {
+  padding: 0 0 0 16px;
+  margin-right: 8px;
+}
+
+/*mat-dialog-container.mat-dialog-container{*/
+/*padding: 0;*/
+/*overflow: hidden;*/
+/*}*/
+.cutline-border {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+mat-dialog-container.mat-dialog-container {
+  position: relative;
+}
+
+.label-color {
+  color: rgba(255, 255, 255, 0.54);
+}
+
+.multiple-filter.nocheckbox {
+  height: 47px;
+  padding: 0 0 0 16px;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.multiple-filter.nocheckbox::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.cutline-right{
+  border-right: 1px solid rgba(255, 255, 255, 0.15) !important; }
+.cutline-top{
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important; }
+.cutline-left{
+  border-left: 1px solid rgba(255, 255, 255, 0.15) !important; }
+.cutline-bottom{
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important; }
+.isActived .top-arrow {
+  display: block;
+  position: absolute;
+  right: 50%;
+  top: 35px;
+  margin-right: -8px;
+  z-index: 5;
+  /*兼容ie8-*/
+  border-top: 8px transparent dashed;
+  border-left: 6px transparent dashed;
+  border-right: 6px transparent dashed;
+  border-bottom: 8px #212121 solid;
+}
+
+// 使用@media 手机版本无图片
+.query .header.bg {background-image: url(/assets/img/query/header-orange.png); background-size: cover;}
+.query .content.bg {background-image: url(/assets/img/query/content-orange.jpg); background-size: cover;}
+
+/* 报表主题 #353230 */
+.query .report {border-collapse: collapse;}
+.query .report .titl {color:#000;background-color:#fff;border-color:#fff;}
+.query .report .head {color:#fff;background-color:#f4511e;border-color:#b9bdce;}
+.query .report .dtlb {color:#000;background-color:#fffef8;border-color:#b9bdce;}
+.query .report .dtld {color:#000;background-color:#fdf3f2;border-color:#b9bdce;}
+
+/*codemirror theme*/
+.cm-s-default.CodeMirror {background: #424242; color:  rgba(233, 237, 237, 1);}
+.cm-s-default div.CodeMirror-selected {
+  background: rgba(255, 255, 255, 0.15); }
+
+.cm-s-default.CodeMirror-focused div.CodeMirror-selected {
+  background: rgba(255, 255, 255, 0.1); }
+
+.cm-s-default .CodeMirror-line::selection, .cm-s-default .CodeMirror-line > span::selection, .cm-s-default .CodeMirror-line > span > span::selection {
+  background: rgba(255, 255, 255, 0.1); }
+
+.cm-s-default .CodeMirror-line::-moz-selection, .cm-s-default .CodeMirror-line > span::-moz-selection, .cm-s-default .CodeMirror-line > span > span::-moz-selection {
+  background: rgba(255, 255, 255, 0.1); }
+.cm-s-default .CodeMirror-gutters {background: #424242; border-right: 1px solid #dddddd;}
+.cm-s-default .CodeMirror-linenumber {color: #797379;}
+.cm-s-default .CodeMirror-cursor {border-left: 1px solid #989498 !important;}
+.cm-s-default span.cm-comment {color: #b33508;}
+.cm-s-default span.cm-atom {color: #c85e7c;}
+.cm-s-default span.cm-number {color: #c85e7c;}
+.cm-s-default span.cm-property, .cm-s-default span.cm-attribute {color: #8fc13e;}
+.cm-s-default span.cm-keyword {color: #dd464c;}
+.cm-s-default span.cm-string {color: #fdcc59;}
+.cm-s-default span.cm-variable {color: #8fc13e;}
+.cm-s-default span.cm-variable-2 {color: #1290bf;}
+.cm-s-default span.cm-def {color: #fd8b19;}
+.cm-s-default span.cm-error {background: #dd464c; color: #989498;}
+.cm-s-default span.cm-bracket {color: #d5d3d5;}
+.cm-s-default span.cm-tag {color: #dd464c;}
+.cm-s-default span.cm-link {color: #c85e7c;}
+.cm-s-default .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
+.cm-s-default .CodeMirror-activeline-background { background: #302020; }
+
+*::-webkit-scrollbar-track {
+  background-color: #D9D9D9;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #292929;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+.disabled{
+  color:rgba(250,250,250,0.3) !important;
+}
+.loading-shade-bgc {
+  background-color: rgba(255, 255, 255, 0.17);
+}
+.thead-font-color {
+  color: rgba(255,255,255,0.7);
+}
+.thead-tr-border{
+  border-bottom: 1px solid #c7c7c7;
+}
+.thead-th-border{
+  border: 1px solid #c7c7c7;
+}
+/*解决nat-row在滚动状态下宽度不是100%导致的背景色透明问题*/
+.mat-header-cell{
+  background-color: rgb(66,66,66);
+}
+.tbody-tr{
+  height: 47px;
+  padding: 0;
+  border: none;
+  align-items: center;
+  box-sizing: border-box;
+}
+.tbody-tr:hover{
+  background-color: rgba(48, 48, 48, 0.6) !important;
+}
+.tbody-tr:nth-child(even){
+  background-color: rgba(48, 48, 48, 0.6);
+}
+.tbody-td{
+  padding: 0 12px;
+  white-space: nowrap;
+  text-align: center;
+  height: 46px;
+  line-height: 46px;
+  text-overflow: ellipsis;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  border-right-color: rgba(255, 255, 255, 0.15) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+  font-size: 14px;
+  overflow: hidden;
+  height: 100%;
+  width: inherit;
+}
+.tbody-td:last-child{
+  border-right: none;
+}
+
+.icon-pin-off , .icon-pin{
+    color:whitesmoke;
+}
+
+/* proc 字体颜色和边框背景 */
+.proc_border_color {
+  color: #F4511E;
+}
+
+.proc_border_bgcolor {
+  background-color: #F4511E;
+}
+
+/** 菜单栏搜索框背景色 */
+.sidenav-searchForm {
+  background-color: #424242; 
+}
+
+// 使用@media 手机版本无图片
+.main_content .showFormBg  {background-image: url(/assets/img/query/header-orange.png); background-size: cover;}
+.main_content .showContentBg  {background-image: url(/assets/img/query/content-orange.jpg); background-size: cover;}
+
+/* 报表主题 #353230 */
+.main_content .report {border-collapse: collapse;}
+.main_content .report .titl {color:#000;background-color:#fff;border-color:#fff;}
+.main_content .report .head {color:#fff;background-color:#f4511e;border-color:#b9bdce;}
+.main_content .report .dtlb {color:#000;background-color:#fffef8;border-color:#b9bdce;}
+.main_content .report .dtld {color:#000;background-color:#fdf3f2;border-color:#b9bdce;}
+/*select filter 样式*/
+.filter-input {
+  background-color: #424242;
+  color: #fff;
+}
+/* table背景色 */
+.view{
+  background-color: #424242;
+}
+/* treeoverlay背景色 */
+.tree_content{
+  background-color: #424242;
+}
+.controllerTipIcon{
+  color:rgba(255, 255, 255, 0.7);
+}
+.sidenav-background {
+  background-color: #BF5A3A;
+}
+.sidenav-background:hover {
+  background-color: #BF5A3A;
+}
+/* 主题after伪类背景色 */
+.gtjaqh-themes-after::after {
+  background: #424242;
+  color: white !important;
+}

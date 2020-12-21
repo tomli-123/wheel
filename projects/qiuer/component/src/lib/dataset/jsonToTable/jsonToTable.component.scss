@@ -1,0 +1,41 @@
+    :host ::ng-deep .tableHtml table {
+      background-color: rgba(0, 0, 0, 0.87);
+    }
+
+    :host ::ng-deep .tableHtml table tr {
+      color: #9cdcfe;
+    }
+
+
+
+    :host ::ng-deep .tableHtml table td.key {
+      color: #9cdcfe;
+    }
+
+    :host ::ng-deep .tableHtml table td.number {
+      color: #bbe0a7;
+    }
+
+    :host ::ng-deep .tableHtml table td.string {
+      color: #ce9178;
+    }
+
+    :host ::ng-deep .tableHtml table td.boolean {
+      color: #dacb5a;
+    }
+
+    :host ::ng-deep .tableHtml table td.null {
+      color: #7e8386;
+    }
+
+    :host ::ng-deep .tableHtml table th {
+      font-weight: normal;
+      color: #9cdcfe;
+      border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+
+    :host ::ng-deep .tableHtml table td {
+      border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }

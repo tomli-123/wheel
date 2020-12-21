@@ -1,0 +1,16 @@
+<mat-form-field class="formField" [ngStyle]="{'width':_tip?'90%':'100%'}" [ngClass]="{'noPaddingRight':_tip}">
+    <input #input matInput [placeholder]="_label" [formControl]="_formControl" [type]="_valueType" >
+    <span matPrefix *ngIf="_prefixHtml" [innerHtml]="_prefixHtml | safeHtml" class="custom"></span>
+    <span matSuffix *ngIf="_suffixHtml" [innerHtml]="_suffixHtml | safeHtml" class="custom"></span>
+    <mat-error *ngIf="_formControl.hasError('required') &&  _requiredMsg">
+        {{_requiredMsg}}
+      </mat-error>
+      <mat-error *ngIf="_formControl.hasError('pattern') && _patternMsg">
+        {{_patternMsg}}
+      </mat-error>
+  </mat-form-field>
+  <button *ngIf="_tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="_tip"
+    [matTooltipClass]="{'pre-line':true}">
+    <mat-icon class="qf icon-help"></mat-icon>
+  </button>
+  

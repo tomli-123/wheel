@@ -1,0 +1,36 @@
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree-content">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding isExpanded="true">
+    <div class="mat-tree-node">
+      <button mat-icon-button matTreeNodeToggle [disabled]="!hasChild(node)" [matTreeNodeToggleRecursive]="false"
+        disableRipple="true">
+        <mat-icon *ngIf="hasChild(node) &&  treeControl.isExpanded(node)" class="qf icon-chevron-down" aria-label="add">
+        </mat-icon>
+        <mat-icon *ngIf="hasChild(node) &&  !treeControl.isExpanded(node)" class="qf icon-chevron-right"
+          aria-label="add"></mat-icon>
+
+      </button>
+      <div *ngIf="!multSelect">
+        <mat-checkbox *ngIf="node.label !== ''&& !hasChild(node)" [checked]="descendantsAllSelected(node)"
+          [indeterminate]="descendantsPartiallySelected(node)" (change)="todoItemSelectionToggle(node,$event)">
+          <span [ngClass]="{'hidden':node.html}" [title]="node.label" >{{node.label}}</span>
+          <span [ngClass]="{'hidden':!node.html}" [innerHtml]="node.html" style="font-weight:bold"></span>
+        </mat-checkbox>
+        <span style="margin-left:5px;" *ngIf="node.label !== ''&& hasChild(node)">
+          <span [ngClass]="{'hidden':node.html}" [title]="node.label" >{{node.label}}</span>
+          <span [ngClass]="{'hidden':!node.html}" [innerHtml]="node.html" style="font-weight:bold"></span>
+        </span>
+      </div>
+      <div *ngIf="multSelect">
+        <mat-checkbox *ngIf="node.label !== ''" [checked]="descendantsAllSelected(node)"
+          [indeterminate]="descendantsPartiallySelected(node)" (change)="todoItemSelectionToggle(node,$event)">
+          <span [ngClass]="{'hidden':node.html}" [title]="node.label" >{{node.label}}</span>
+          <span [ngClass]="{'hidden':!node.html}" [innerHtml]="node.html" style="font-weight:bold"></span>
+        </mat-checkbox>
+      </div>
+    </div>
+    <div class="demo-tree-node-nested" [class.tree-node-invisible]="!treeControl.isExpanded(node)">
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-tree-node>
+</mat-tree>

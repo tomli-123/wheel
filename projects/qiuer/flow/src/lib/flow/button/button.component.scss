@@ -1,0 +1,21 @@
+:host {
+  .proc_transformBtn {
+    margin: 0px 5px;
+    margin-top: 5px;
+  }
+
+  .proc_btn-list {
+    display: flex;
+    flex-direction: column;
+
+    ::ng-deep .buttonContent {
+      margin-top: 5px;
+    }
+  }
+}
+
+@media print {
+  :host {
+    display: none;
+  }
+}

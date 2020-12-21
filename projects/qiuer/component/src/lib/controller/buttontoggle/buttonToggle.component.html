@@ -1,0 +1,7 @@
+
+<mat-button-toggle-group #group="matButtonToggleGroup" [vertical]="isVertical" [formControl]="_formControl">
+  <mat-button-toggle [value]="item.value" *ngFor="let item of _group" [disabled]="!!item['disabled']" [matTooltip]="item.name || ''">
+    <span *ngIf="!item.icon">{{item.name || ''}}</span>
+    <mat-icon *ngIf="item.icon" [class]="'qf ' + item.icon"></mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>

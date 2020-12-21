@@ -1,0 +1,14 @@
+.expansionPanel_content {
+  height: 100%;
+  // margin: 5px 0;
+  // padding: 0 10px;
+}
+
+@media screen and (max-width: 960px) {
+   .mat-expansion-panel-content .mat-expansion-panel-body {
+    padding: 0 10px 16px;
+  }
+   .mat-expansion-panel .mat-expansion-panel-header {
+    padding: 0 10px;
+  }
+}

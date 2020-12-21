@@ -1,0 +1,17 @@
+<div id="contentHtml" [fxLayout]="'row'">
+  <div [fxLayout]="fxLayout" fxLayoutWrap class="div_content" fxFlex="80" id="overflow" class="page-wrapper">
+    <div [ngxAnchor]="child.id" [text]="child.name" [hidden]="_isChildHidden(child.id)" dynLayout
+      [layout_data]="child.style" *ngFor="let child of childs;">
+      <dynamic-container [metadata]="child" [parent]="_self()">
+
+      </dynamic-container>
+    </div>
+  </div>
+  <div fxFlex="20">
+    <ngx-anchor-nav style="position: fixed;">
+      <ng-template #anchorTpl let-text="text">
+        <span style="padding-left: 10px;">{{text}}</span>
+      </ng-template>
+    </ngx-anchor-nav>
+  </div>
+</div>

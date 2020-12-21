@@ -1,0 +1,11 @@
+{
+  "name": "@qiuer/aggrid",
+  "version": "0.2.0",
+  "peerDependencies": {
+    "@angular/common": "^10.0.9",
+    "@angular/core": "^10.0.9"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

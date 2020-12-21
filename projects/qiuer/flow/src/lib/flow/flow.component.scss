@@ -1,0 +1,156 @@
+.procContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .process_query {
+    height: 100%;
+  }
+
+  .frameDiv {
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 599px) {
+    .frameDiv {
+      margin-top: 54px;
+    }
+  }
+
+  .queryContent {
+    min-width: 350px;
+    justify-content: center;
+    overflow-y: auto;
+    display: flex;
+    position: relative;
+    height: 100%;
+  }
+
+  @media screen and (max-width:650px) {
+    .process_query {
+      font-size: 14px !important;
+      height: 100%;
+    }
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cards mat-card {
+    margin: 10px;
+  }
+
+  .content-left {
+    width: 435px;
+    height: calc(100% - 20px);
+    padding: 10px 0px;
+  }
+
+  .content-right {
+    overflow: auto;
+    height: calc(100% - 20px);
+    padding: 10px 0px;
+  }
+
+  .content-right mat-card {
+    width: 900px;
+  }
+
+  @media (min-width: 980px) {
+    .content-right {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .content-left {
+      width: 100%;
+    }
+
+    .queryContent {
+      flex-direction: column;
+      height: auto !important;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1365px) {
+    .content-left {
+      background-color: #efefef;
+      position: absolute;
+      z-index: 1000;
+    }
+  }
+
+  .approvalBox {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .approvalBox mat-card {
+    padding: 0px 10px 10px 10px;
+  }
+
+  .btn-float {
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    z-index: 999;
+  }
+
+  .leftMask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.54);
+  }
+
+  .btn-fixed {
+    margin: 20px 0px 0px 20px;
+  }
+
+  .cards .rightForm {
+    height: calc(100% - 20px);
+    flex: 1;
+    overflow-x: auto;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    margin-bottom: 0px;
+    box-shadow: none;
+    background-color: transparent;
+    overflow-y: hidden !important;
+  }
+}
+
+@media print {
+  :host {
+    .procContent {
+      height: inherit !important;
+    }
+
+    .rightForm {
+      display: none !important;
+    }
+
+    .process_query {
+      .queryContent {
+        height: inherit !important;
+      }
+
+      .content-left {
+        left: 0px !important;
+        opacity: 1 !important;
+      }
+    }
+
+    .frameDiv {
+      margin-top: 0px;
+    }
+  }
+}

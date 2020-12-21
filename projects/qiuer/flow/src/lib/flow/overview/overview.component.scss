@@ -1,0 +1,160 @@
+:host ::ng-deep .html_content {
+  margin: 0px;
+}
+
+:host ::ng-deep .divForm_content {
+  overflow: hidden !important;
+}
+
+:host ::ng-deep .formField {
+  height: 50px !important;
+  min-height: 50px;
+  font-size: 14px;
+  padding: 0px 5px !important;
+}
+
+:host ::ng-deep .font-div .icon-menu-up-outline {
+  width: initial;
+}
+
+:host {
+  .overCard {
+    width: calc(100% - 32px);
+    min-height: 9px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    display: block;
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    // background: white;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .overview {
+    margin: 10px;
+
+    ._proc_overview {
+      margin-top: 25px;
+      border-top: 1px solid #dddddd;
+      padding-top: 15px;
+      min-height: 9px;
+      position: relative;
+    }
+
+    .proc-qrcode {
+      display: none;
+    }
+
+    .font-div {
+      width: 100%;
+      position: absolute;
+      z-index: 9;
+      top: 0px;
+      left: 0px;
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+    }
+
+    .proc_header_left {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 6px;
+      left: 0px;
+      height: 30px;
+    }
+
+    .proc_border {
+      width: 5px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .font_border_font {
+      margin-left: 5px;
+      font-size: 16px;
+    }
+
+    .f_24 {
+      font-size: 24px;
+    }
+
+    .overview_header_right {
+      margin: auto;
+      margin-right: 5px;
+
+      .pack {
+        padding: 0px 5px 2px 5px;
+        height: 28px;
+        display: inline-block;
+      }
+    }
+
+    .overview_header_right span {
+      font-size: 24px;
+      padding: 2px;
+      margin-left: 10px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .overview_header_right span:hover {
+      background-color: #dddddd;
+    }
+
+    .overview_procid {
+      margin-left: 10px;
+      font-size: 12px;
+      padding-top: 4px;
+
+      .overview_procid_font {
+        font-size: 10px;
+        color: #dddddd;
+        margin-right: 5px;
+      }
+    }
+
+    .proc_procid {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+
+      .proc_procid_font {
+        font-size: 10px;
+        color: #dddddd;
+        margin-right: 5px;
+      }
+    }
+
+    ._print {
+      display: none;
+    }
+  }
+}
+
+@media print {
+  ._print {
+    display: block !important;
+  }
+
+  ._notPrint {
+    display: none;
+  }
+
+  .proc-qrcode {
+    display: flex !important;
+    width: 100%;
+  }
+
+  .font-div {
+    display: none !important;
+  }
+
+  .overCard {
+    height: initial !important;
+    overflow-y: block;
+  }
+}

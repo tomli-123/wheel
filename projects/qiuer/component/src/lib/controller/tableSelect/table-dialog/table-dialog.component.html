@@ -1,0 +1,16 @@
+<div class="dlg-body treeDialog-content dlg-noFooter">
+  <div mat-dialog-title class="dlg-header">
+    <span class="dlg-msg">已选：{{checklistSelection.length}}个</span>
+    <span fxFlex></span>
+    <button mat-button class="closeDialog sureBtn" tabindex="-1" (click)="submit()">
+      <mat-icon class="qf icon-check"></mat-icon>
+    </button>
+    <button mat-button class="closeDialog cancelBtn" tabindex="-1" [mat-dialog-close]="false">
+      <mat-icon class="qf icon-close"></mat-icon>
+    </button>
+  </div>
+  <div class="dialog-content">
+    <!-- <main *ngIf="formMetadata" [metadata]="formMetadata" [data]="data"></main> -->
+    <app-table-select #tableSelect [metadata]="tableMetadata" [data]="tableData" (eventTrigger)="tableEventReducer($event)"> </app-table-select>
+  </div>
+</div>

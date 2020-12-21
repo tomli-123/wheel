@@ -1,0 +1,327 @@
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+  background: #272822;
+}
+
+/* Inline code */
+:not(pre)>code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: slategray;
+}
+
+.token.punctuation {
+  color: #f8f8f2;
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+  color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #e6db74;
+}
+
+.token.keyword {
+  color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+  color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers>code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+.line-numbers-rows>span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows>span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  /* Same as .prism’s padding-top */
+
+  background: hsla(24, 20%, 50%, .08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+
+  pointer-events: none;
+
+  line-height: inherit;
+  white-space: pre;
+}
+
+.line-highlight:before,
+.line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%, .4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+.line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+  content: none;
+}
+
+
+blockquote {
+  border-left: 3px solid rgba(0, 0, 0, 0.21);
+  padding-left: 12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.md_content {
+  position: relative;
+  min-height: 300px;
+  overflow: auto;
+  padding: 0 10px;
+}
+
+.markdown_views a {
+  outline: none;
+  text-decoration: none
+}
+
+.markdown_views table {
+  background-color: transparent;
+  border-spacing: 0
+}
+
+.markdown_views table tr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  background-color: #fff
+}
+
+.markdown_views td,
+.markdown_views th {
+  border-right: 1px solid #dcdcdc;
+  padding: 8px 12px
+}
+
+.markdown_views table {
+  border-collapse: collapse;
+  display: table;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 24px
+}
+
+.markdown_views tbody {
+  border: 0
+}
+
+.markdown_views table tr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  background-color: #fff
+}
+
+.markdown_views td {
+  border-top: 1px solid #dcdcdc
+}
+
+.markdown_views table tr:nth-child(2n) {
+  background-color: #f7f7f7
+}
+
+.markdown_views table tr td,
+.markdown_views table tr th {
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  word-break: normal !important;
+  vertical-align: middle
+}
+
+.markdown_views table tr td code,
+.markdown_views table tr th code {
+  white-space: normal;
+  word-break: normal !important
+}
+
+.markdown_views table tr th {
+  font-weight: 700;
+  background-color: #eff3f5
+}
+
+.markdown_views table tr th {
+  font-weight: 700;
+  background-color: #eff3f5
+}
+
+// 自定义样式
+.md_content p code {
+  margin: 0;
+  margin-left: 5px;
+  margin-right: 4px;
+  border: 1px solid #ddd;
+  background: #f6f6f6;
+  color: #666;
+  font-family: "YaHei Consolas Hybrid", Consolas, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, monospace, monospace;
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.md_content hr{
+  border-style: dashed;
+}

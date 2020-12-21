@@ -1,0 +1,7 @@
+<mat-grid-list [cols]="_metadata.cols" [rowHeight]="_metadata.rowHeight">
+    <mat-grid-tile *ngFor="let child of _list;i as index" [colspan]="child.col" [rowspan]="child.row" [style.background]="child.bgColor">
+        <dynamic-container [metadata]="child.childElement">
+
+		</dynamic-container>
+    </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,94 @@
+/*report style*/
+.report {border-collapse: collapse;table-layout: fixed;}
+
+
+.report_content{display: flex;flex-direction: column;}
+.report_content .table-head{width: calc(100% - 7px);}
+.scroll_report .table-body{overflow-y: scroll;}
+
+
+.report .titl {color:#000;background-color:#fffef8;border-color:#fff;}
+.report .head {color:#fff;background-color:#303f9f;border-color:#b9bdce;}
+.report .dtlb {color:#000;background-color:#fee;border-color:#b9bdce;}
+.report .dtld {color:#000;background-color:#f1f3fb;border-color:#b9bdce;}
+.s-100 {font: bold 16pt Helvetica;border:0;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-101 {font: bold 16pt Helvetica;border:0;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-120 {font: 11pt Helvetica;border:0;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-121 {font: 11pt Helvetica;border:0;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-200 {font: bold 12pt Helvetica;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-201 {font: bold 12pt Helvetica;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-220 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-221 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-280 {font: bold 12pt Helvetica;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-281 {font: bold 12pt Helvetica;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-500 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-550 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-600 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-700 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-800 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-801 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-802 {font: 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-810 {font: bold 11pt Helvetica;border:1px solid;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-811 {font: bold 11pt Helvetica;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-812 {font: bold 11pt Helvetica;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1100 {font: bold 15pt 微软雅黑;border:0;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1101 {font: bold 15pt 微软雅黑;border:0;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1120 {font: 10pt 微软雅黑;border:0;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-1121 {font: 10pt 微软雅黑;border:0;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1122 {font: 10pt 微软雅黑;border:0;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1125 {font: bold 10pt 微软雅黑;border:0;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-1200 {font: bold 10pt 微软雅黑;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1201 {font: bold 10pt 微软雅黑;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1300 {font: bold 10pt 微软雅黑;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1301 {font: bold 10pt 微软雅黑;border:2px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1505 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1506 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1507 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1508 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1510 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1515 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1520 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1525 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1550 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1710 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1711 {font: 9pt 宋体;color:#00f;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1712 {font: 9pt 宋体;color:#f00;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1714 {font: 9pt 宋体;color:#fff;background-color:#f00;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1715 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1716 {font: bold 9pt 宋体;color:#00f;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1717 {font: bold 9pt 宋体;color:#f00;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1719 {font: bold 9pt 宋体;color:#fff;background-color:#f00;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1720 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1725 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1730 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1731 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1732 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1735 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1736 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1737 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1750 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1755 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1800 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-1801 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1802 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1810 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:left;vertical-align:middle;}
+.s-1811 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1812 {font: bold 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1850 {font: 9pt 宋体;color:#f00;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1851 {font: 9pt 宋体;color:#01b50e;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1852 {font: 9pt 宋体;color:#e2be15;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1853 {font: 9pt 宋体;color:#00f;border:1px solid;border-color:inherit;text-align:center;vertical-align:middle;}
+.s-1920 {font: 10pt 微软雅黑;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1930 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+.s-1931 {font: 9pt 宋体;border:1px solid;border-color:inherit;text-align:right;vertical-align:middle;}
+/*report style end*/
+
+/*预览样式*/
+.panelClass-preview-dialog{
+  width: 90vw;
+  height: 80vh;
+}
+.panelClass-preview-dialog mat-dialog-container{
+  overflow: hidden;
+  padding: 0;
+}

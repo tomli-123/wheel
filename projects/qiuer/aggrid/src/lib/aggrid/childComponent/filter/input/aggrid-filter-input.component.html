@@ -1,0 +1,13 @@
+<div>
+    <select [formControl]="conditionControl"> 
+        <option *ngFor="let item of options" [ngValue]="item.value">{{item.label}}</option>
+    </select>
+</div>
+<div>
+    <input  [formControl]="formControl"   style="border: 1px solid;">
+    <button *ngIf="tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="tip"
+    [matTooltipClass]="{'pre-line':true}">
+    <mat-icon class="qf icon-help"></mat-icon>
+    </button>
+</div>
+

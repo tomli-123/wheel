@@ -1,0 +1,59 @@
+.dlg-body {
+  margin: -24px;
+  .dlg-title {
+    margin: 0;
+    height: 54px;
+    line-height: 54px;
+    padding: 0 16px;
+    display: flex;
+    h4 {
+      font-weight: 400;
+    }
+    .closeDialog {
+      width: 40px;
+      min-width: initial;
+      padding: 0;
+      padding-right: -10px;
+      mat-icon {
+        display: inherit;
+      }
+    }
+  }
+  .content-padding{
+    padding: 16px;
+  }
+  .dlg-content {
+    margin: 0;
+    .formField {
+      padding: 0 20px;
+    }
+    .copyFormField {
+      margin-top: 20px;
+      padding: 0 10px;
+    }
+    .dialogForm {
+      display: block;
+    }
+    .full {
+      width: 100%;
+      .CodeMirror{
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+  .dlg-footer {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+}
+
+mat-tab-body.mat-tab-body {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}

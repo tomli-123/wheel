@@ -1,0 +1,26 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [ngClass]="{'display':filter.length > 0 && !node.filter}" >
+    <div class="mat-tree-node">
+      <button mat-icon-button matTreeNodeToggle [disabled]="!hasChild(node)" [matTreeNodeToggleRecursive]="false"
+        disableRipple="true">
+        <mat-icon *ngIf="hasChild(node) &&  treeControl.isExpanded(node)" class="qf icon-chevron-down" aria-label="add">
+        </mat-icon>
+        <mat-icon *ngIf="hasChild(node) &&  !treeControl.isExpanded(node)" class="qf icon-chevron-right"
+          aria-label="add"></mat-icon>
+
+      </button>
+      <div>
+        <mat-checkbox *ngIf="node.name !== ''" [checked]="node.checked" (change)="checkedToggle(node)"
+          [disabled]="node.disabled">
+          <span [ngStyle]="{'font-weight':filter.length>0 && node.name.indexOf(filter)!==-1?'bold':'normal'}">{{node.name}}</span>
+        </mat-checkbox>
+        <mat-icon class="qf icon-block-helper" [ngClass]="{'red':node.disabled}" (click)="toDisabled(node)">
+        </mat-icon>
+      </div>
+    </div>
+    <div class="demo-tree-node-nested" [class.tree-node-invisible]="!treeControl.isExpanded(node)">
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+
+  </mat-tree-node>
+</mat-tree>

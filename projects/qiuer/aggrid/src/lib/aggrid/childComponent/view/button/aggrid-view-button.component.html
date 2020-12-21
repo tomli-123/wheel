@@ -1,0 +1,6 @@
+
+    <button *ngFor="let item of cellRendererParams" mat-button [matTooltip]="item.tip" style="height: 100%;margin: 0 3px;" [disableRipple]="true" class="buttonContent {{item.shape}} mat-primary"
+    [matTooltipPosition]="'above'" [matTooltipClass]="{'pre-line':true}"
+    (click)="onColumnButtonClick($event,item)">
+    <mat-icon *ngIf="item.icon" [class]="'qf ' + item.icon"></mat-icon>{{item.label}}
+</button>

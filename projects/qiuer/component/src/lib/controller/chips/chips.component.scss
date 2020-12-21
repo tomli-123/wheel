@@ -1,0 +1,18 @@
+.chip_item {
+  user-select: none;
+  cursor: pointer;
+
+  span {
+    display: inline-block;
+    // max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}
+
+.formField {
+  padding: 0 15px;
+  box-sizing: border-box;
+}

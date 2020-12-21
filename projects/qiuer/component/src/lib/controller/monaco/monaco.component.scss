@@ -1,0 +1,30 @@
+.formField {
+  width: 100%;
+  padding: 0 15px 20px 15px;
+  box-sizing: border-box;
+  height: 100%;
+  position: relative;
+}
+
+.monaco_content_maxHeight {
+  height: 100% !important;
+}
+
+// ::ng-deep ngx-monaco-editor {
+//   height: 100% !important;
+//   width: 100% !important;
+//   min-height: 150px;
+// }
+
+:host ::ng-deep .rename-box {
+  display: none !important;
+}
+
+:host ::ng-deep .margin {
+  margin: 0px !important;
+}
+
+.editorContent {
+  width: 100%;
+  min-height: 300px;
+}

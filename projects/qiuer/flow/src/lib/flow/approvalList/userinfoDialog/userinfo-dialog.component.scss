@@ -1,0 +1,63 @@
+// @import '../../../css/commonAddDlg.scss';
+
+.userinfo_content {
+  display: flex;
+
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+    .line-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .avatar-item {
+      height: 50px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .avatar-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .name-item {
+      min-height: 22px;
+    }
+
+    .post-item {
+      font-size: 14px;
+      min-height: 20px;
+    }
+
+    .qrcode-item {
+      cursor: pointer;
+    }
+
+    .line {
+      margin: 4px 0px;
+      font-size: 14px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .vcode {
+    margin: auto;
+    padding-left: 20px;
+    border-left: 1px solid #cccccc;
+    width: 150px;
+
+    .font {
+      font-size: 14px;
+      padding: 8px;
+      text-align: center;
+    }
+  }
+}

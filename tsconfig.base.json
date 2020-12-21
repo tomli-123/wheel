@@ -1,0 +1,64 @@
+{
+  "compileOnSave": false,
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@qiuer/core": [
+        "dist/qiuer/core"
+      ],
+      "@qiuer/core/*": [
+        "dist/qiuer/core/*"
+      ],
+      "@qiuer/component": [
+        "dist/qiuer/component"
+      ],
+      "@qiuer/component/*": [
+        "dist/qiuer/component/*"
+      ],
+      "@qiuer/flow": [
+        "dist/qiuer/flow"
+      ],
+      "@qiuer/flow/*": [
+        "dist/qiuer/flow/*"
+      ],
+      "@qiuer/chart": [
+        "dist/qiuer/chart"
+      ],
+      "@qiuer/chart/*": [
+        "dist/qiuer/chart/*"
+      ],
+      "@qiuer/markdown": [
+        "dist/qiuer/markdown"
+      ],
+      "@qiuer/markdown/*": [
+        "dist/qiuer/markdown/*"
+      ],
+      "@qiuer/aggrid": [
+        "dist/qiuer/aggrid"
+      ],
+      "@qiuer/aggrid/*": [
+        "dist/qiuer/aggrid/*"
+      ]
+    }
+  }
+}

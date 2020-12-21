@@ -1,0 +1,54 @@
+<!-- <button mat-raised-button color="primary" (click)="test()">查看数据</button> -->
+
+<div class="drop-content" cdkDropListGroup [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+
+  <div class="drop-table">
+    <table class="table">
+      <thead>
+        <th *ngIf="rows.length > 0"></th>
+        <th *ngFor="let item of columns">{{ item.title }}</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of dataSource;index as i;">
+
+          <td *ngIf="row['title']"> {{row['title'] || ''}} </td>
+          <!-- height: 33%; width:20%; -->
+          <td *ngFor="let cell of row.data;index as j;" style="min-width: 80px;" [style.height]="100/rows.length + '%'"
+            [style.width]="100/columns.length + '%'">
+
+            <div cdkDropList [cdkDropListData]="cell['data']" (cdkDropListDropped)="cellDrop($event, i, j, row, cell)"
+              class="dropCell" attr.data-rowIndex={{i}} attr.data-columnIndex={{j}}>
+
+              <div class="cell_Item" *ngFor="let chip of cell['data'];index as k;" attr.data-cellIndex={{k}} cdkDrag>
+                <span style="flex: 1;"> {{chip[item.label]}} </span>
+                <mat-icon class="qf icon-close" attr.data-cellIndex={{k}} (click)="remove(chip, i, j, k)"></mat-icon>
+
+                <div *cdkDragPreview class="cell_Item">
+                  <span> {{chip[item.label]}} </span>
+                  <mat-icon class="qf icon-close"></mat-icon>
+                </div>
+
+              </div>
+
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="drop-list">
+    <mat-form-field class="sidenav-search" floatPlaceholder="never" id="keywords">
+      <mat-icon matSuffix class="qf"
+        [ngClass]="{'icon-magnify':filter.value.length<1,'icon-close':filter.value.length>0}"
+        (click)="clearFilter(filter)"></mat-icon>
+      <input matInput #filter tabindex="-1" (input)="filterChange(filter.value)" placeholder="过滤">
+    </mat-form-field>
+    <!-- (cdkDropListDropped)="drop($event)" -->
+    <div cdkDropList [cdkDropListData]="viewItems" class="example-list drop-item">
+      <div class="example-box" *ngFor="let _item of viewItems" cdkDrag>{{_item[item.label]}}</div>
+    </div>
+  </div>
+
+</div>

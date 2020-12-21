@@ -1,0 +1,18 @@
+<span [matTooltip]="selectTip" [matTooltipClass]="{'pre-line':true}">
+  <mat-form-field class="formField" style="cursor: pointer;" (click)="showOverlay()" cdkOverlayOrigin>
+    <span *ngIf="multiSelect &&_formControl.value?.length>0 " style="position: absolute;top:6px;">
+      {{_formControl.value?.length }}个已选</span>
+    <span *ngIf="!multiSelect" class="displayName"> {{displayName}}</span>
+    <input matInput style="visibility:hidden" [placeholder]="label+(_pending?' . . .':'')" [formControl]="_formControl"
+      type="string" [disabled]="_formControl.disabled">
+    <mat-icon matSuffix class="qf icon-file-tree" aria-label="tree"></mat-icon>
+  </mat-form-field>
+</span>
+
+<ng-template #overlay>
+  <div class="tree_content">
+    <tree-select [multSelect]="multiSelect" [items]="_options" [replaceData]="_option" [value]="_value"
+      (checkEvent)="checkEvent($event)">
+    </tree-select>
+  </div>
+</ng-template>

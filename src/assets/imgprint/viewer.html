@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="google" content="notranslate">
+  <title>printImg</title>
+  <style>
+    .print_button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: transparent;
+      border: none;
+    }
+
+    .print_icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+
+<body>
+  <img id="print" style="margin-top:15px">
+  <button class="print_button" id="printButton" onclick="toPrint()">
+    <img class="print_icon"
+      src="data:image/png;base64,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">
+  </button>
+</body>
+<script>
+  var local = window.location.href;
+  var localArray = local.split('?');
+  var paramArray = localArray[1].split('&');
+  var params = new Object();
+  for (let i = 0; i < paramArray.length; i++) {
+    params[paramArray[i].split('=')[0]] = decodeURI(paramArray[i].split('=')[1]);
+  }
+  var url = params['url'];
+
+
+  const configList = [
+    'canDownloadAsPreviewContainer',
+    'canPrintAsPreviewContainer',
+    'canMouseRightAsPreviewContainer',
+    'canCopyAsPreviewContainer',
+    'canSaveHtmlAsPreviewContainer'
+  ]
+
+  if (params['canPrintAsPreviewContainer'] === 'false') {
+    this.document.getElementById('printButton').style.display = 'none';
+    window.print = function () {
+      document.body.innerHTML = '你想偷偷打印吗!';
+    }
+  }
+
+  if (params['canMouseRightAsPreviewContainer'] === 'false') {
+    document.oncontextmenu = new Function("event.returnValue=false;");
+    document.onselectstart = new Function("event.returnValue=false;");
+  }
+
+  if (params['canSaveHtmlAsPreviewContainer'] === 'false') {
+    document.addEventListener('keydown', function (e) {
+      e = window.event || e;
+      var keycode = e.keyCode || e.which;
+      if (e.ctrlKey && keycode == 83) {
+        e.preventDefault();
+        window.event.returnValue = false;
+      }
+    })
+  }
+
+  var param = '';
+  for (let i in params) {
+    if (i !== 'url' && configList.indexOf(i) === -1) {
+      param = param + '&' + i + '=' + params[i];
+    }
+  }
+
+  param = param.replace('&', '');
+
+
+  var src = url + '?' + param
+  console.log(src)
+  console.log(param);
+  var img = document.getElementById('print');
+  img.setAttribute('src', src);
+  function toPrint() {
+    let button = document.getElementById("printButton");
+    button.classList.add("hidden");
+    window.print();
+    button.classList.remove("hidden");
+  }
+</script>
+
+</html>

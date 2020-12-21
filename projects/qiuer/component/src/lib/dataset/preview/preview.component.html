@@ -1,0 +1,5 @@
+<div class="preview_content" appClazz [clazz]="_clazz" [ngStyle]="_ngStyle" *ngIf="_viewsrc">
+  <iframe [src]="_viewsrc" name="myIframe" *ngIf="audio.indexOf(fileType)==-1 && video.indexOf(fileType)==-1"></iframe>
+  <audio controls="controls" *ngIf="audio.indexOf(fileType)!==-1" [src]="_viewsrc"></audio>
+  <video controls="controls" name="media" *ngIf="video.indexOf(fileType)!==-1" [src]="_viewsrc" (error)="videoError($event)"></video>
+</div>

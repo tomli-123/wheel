@@ -1,0 +1,25 @@
+<div [title]="_formControl.value?_formControl.value[_valueType.label]:''" >
+    <select [formControl]="_formControl"  class="formField"  [ngClass]="{'noPaddingRight':tip}" [ngStyle]="{'width':tip?'90%':'100%'}">
+        <option *ngIf="emptyLabel&&!_required">{{emptyLabel}}</option>
+        <option *ngFor="let item of options" [ngValue]="item">
+            <span>{{item[_valueType.label] || item}}</span>
+        </option>
+    </select>
+
+    <!-- <button mat-button *ngIf="hasClear && _formControl.value" matSuffix mat-icon-button
+        (click)="_formControl.setValue(null); $event.stopPropagation()" [disabled]="_formControl.disabled" class="mat-button">
+        <mat-icon class="qf icon-close"></mat-icon>
+    </button> -->
+    <!-- <mat-error *ngIf="_formControl.hasError('pattern') && !_formControl.hasError('required') && patternMsg">
+        {{requiredMsg}}
+    </mat-error>
+    <mat-error *ngIf="_formControl.hasError('required') && patternMsg">
+        {{patternMsg}}
+    </mat-error> -->
+    <button *ngIf="tip" mat-icon-button style="width:10%;" class="iconContent" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="tip"
+    [matTooltipClass]="{'pre-line':true}" [matTooltipPosition]="'above'" class="mat-button">
+    <mat-icon class="qf icon-help"></mat-icon>
+    </button>
+</div>
+
+

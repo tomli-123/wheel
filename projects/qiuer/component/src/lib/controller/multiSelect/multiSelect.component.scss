@@ -1,0 +1,38 @@
+.formField {
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.filter-box {
+  width: 100%;
+  height: 40px;
+}
+.suffix {
+  width: 16px;
+  height: 100%;
+  float: left;
+}
+.filter-input {
+  border: none;
+  outline: none;
+}
+.filter-box mat-checkbox.mat-checkbox {
+  padding: 0 0 0 16px;
+  margin-right: 8px;
+  line-height: 25px;
+}
+.hidden {
+  display: none;
+}
+mat-icon {
+  font-size: 14px;
+}
+.noPaddingRight {
+  padding-right: 0px;
+}
+.hideFilter {
+  display: none;
+}
+.selectedDialog{
+  padding-left: 15px;
+}

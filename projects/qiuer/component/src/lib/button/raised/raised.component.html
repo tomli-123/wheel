@@ -1,0 +1,8 @@
+<div [ngStyle]="{'position': position,'top':top,'left':left,'right':right,'bottom':bottom}">
+  <button mat-button color="primary" class="buttonContent theme-gray {{shape}} mat-primary" [disabled]='disabled || _pending'
+    (click)="_click()" [matTooltip]="_tip" [matTooltipClass]="{'pre-line':true}" [ngStyle]="_ngStyle"
+    [matTooltipPosition]="tipPosition">
+    <mat-icon *ngIf="_icon" [class]="'qf ' + _icon"></mat-icon>
+    {{_label}}
+  </button>
+</div>

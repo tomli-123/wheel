@@ -1,0 +1,7 @@
+  <div fxLayout="row wrap" fxLayoutWrap *ngFor="let data of childs;" class="carouselPanel_content">
+    <div dynLayout *ngIf="data.id === showId" [layout_data]="data['style']">
+      <dynamic-container [metadata]="data" [parent]="_self()">
+
+      </dynamic-container>
+    </div>
+  </div>

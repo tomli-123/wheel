@@ -1,0 +1,18 @@
+<div class="navBox" [ngStyle]="{'position': position,'top':top,'left':left,'right':right,'bottom':bottom}" >
+  <button class="navBoxBtn" color="primary" [matTooltip]="_tip" [matTooltipClass]="{'pre-line':true}" [matTooltipPosition]="tipPosition"
+    (click)="doOnClick()" mat-fab  [disabled]="disabled || _pending"
+    [ngStyle]="_ngStyle">
+    <mat-icon *ngIf="_icon" [class]="'qf ' + _icon" ></mat-icon>
+    {{_icon?'':_label}}
+  </button>
+
+  <div [style.height]="!_signal ? '0px' : 50*_childs.length+10+'px'" class="navMenuBox">
+
+    <ng-container *ngFor="let child of _childs">
+      <dynamic-container [metadata]="child" [parent]="_self()" >
+
+      </dynamic-container>
+    </ng-container>
+
+  </div>
+</div>

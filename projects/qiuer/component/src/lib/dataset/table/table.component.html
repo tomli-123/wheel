@@ -1,0 +1,164 @@
+<div [innerHTML]="_css|safeHtml"></div>
+<div #table class="table_content" [ngClass]="{'theadmode': theadMode}" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <div class="loading-shade loading-shade-bgc" *ngIf="_pending">
+    <mat-spinner *ngIf="_pending"></mat-spinner>
+  </div>
+  <div id="view" class="view {{_rootClass}}" [ngStyle]="{'height':_height +'px'}">
+    <!-- maxHeight dialogMaxHeight
+    [isActive]="!isInfinite && !height" [isDialogActive]="_isDialogActive" [repaint]="layoutChange" -->
+
+
+    <mat-radio-group [ngModel]="_selection.selected[0]">
+      <mat-table matSort [dataSource]="_dataSource" cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)"
+        [cdkDropListDisabled]="!dragDrop||_filterValue.length > 0" [matSortDisabled]="!isSort">
+        <ng-container *ngIf="_isSelect && _isMultiple" matColumnDef="_checkbox" sticky>
+          <mat-header-cell *matHeaderCellDef class="column-header check-column">
+            <mat-checkbox (change)="$event ? _masterToggle() : null;"
+              [checked]="_selection.hasValue() && _isAllSelected()" [indeterminate]="_indeterminate()">
+            </mat-checkbox>
+            <mat-icon class="qf icon-filter filterIcon header-icon" *ngIf=" _filterValue.length > 0" matPrefix>
+            </mat-icon>
+          </mat-header-cell>
+          <mat-cell (click)="$event.stopPropagation();" (dblclick)="$event.stopPropagation();" *matCellDef="let row"
+            class="check-column">
+            <mat-checkbox (change)="$event ? _click(row) : null" [checked]="_selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+          <mat-footer-cell class="check-column" *matFooterCellDef>
+            <mat-icon class="qf icon-view-list">
+            </mat-icon>
+          </mat-footer-cell>
+        </ng-container>
+
+        <ng-container *ngIf="_isSelect && !_isMultiple" matColumnDef="_checkbox" sticky>
+          <mat-header-cell *matHeaderCellDef class="column-header check-column">
+          </mat-header-cell>
+          <mat-cell (click)="$event.stopPropagation();" (dblclick)="$event.stopPropagation();" *matCellDef="let row"
+            class="check-column">
+            <mat-radio-button (change)="$event ? _click(row) : null" [checked]="_selection.isSelected(row)"
+              style="padding-left: .5rem" [value]="row"></mat-radio-button>
+          </mat-cell>
+          <mat-footer-cell class="check-column" *matFooterCellDef>
+            <mat-icon class="qf icon-filter">
+            </mat-icon>
+            <!-- TODO 改成 底部标识 -->
+          </mat-footer-cell>
+        </ng-container>
+
+        <ng-container *ngFor="let column of _columns; index as i" [matColumnDef]="column.name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            [ngStyle]="{'flex': column.width ,'min-width': column.minWidth}">
+            <span style="display:inline-block;">{{column.label}}</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="matCell" [ngSwitch]="column.type"
+            (click)="cellClick(row,column,$event)" (dblclick)="_dblclick(row,$event, i)"
+            [ngStyle]="{'justify-content': column.align  ,'flex': column.width ,'min-width': column.minWidth}">
+
+            <span *ngSwitchCase="'icon'" class="matCellSpan qf" [ngClass]="_getClass(row,column)"
+              [title]="_getTitle(row,column)" [ngStyle]="_getStyle(row,column)">
+
+            </span>
+
+            <span *ngSwitchCase="'image'" class="matCellSpan " [innerHtml]="_getImage(row,column)|safeHtml"
+              [title]="_getTitle(row,column)" [ngStyle]="_getStyle(row,column)">
+
+            </span>
+
+            <span *ngSwitchCase="'checkbox'" [title]="_getTitle(row,column)" [ngStyle]="_getStyle(row,column)">
+              <ng-container *ngFor="let checkbox of column.checkboxes;">
+                <mat-slide-toggle (click)="$event.stopPropagation();"
+                  (change)="checkboxClick(row,column,$event,checkbox?.onChange)"
+                  [checked]="columnFunc(row,column,checkbox?.defaultValue)"
+                  [disabled]="columnFunc(row,column,checkbox?.disabled) "
+                  [hidden]="columnFunc(row,column,checkbox?.hidden)">{{_getName(row,checkbox)}}</mat-slide-toggle>
+              </ng-container>
+            </span>
+
+            <div *ngSwitchCase="'container'">
+              <ng-container>
+                <dynamic-container [metadata]="column.child" [data]="row" [parent]="_self()">
+                </dynamic-container>
+              </ng-container>
+            </div>
+
+            <span *ngSwitchCase="'button'">
+              <ng-container *ngFor="let button of column.buttons;">
+                <button mat-button [matTooltip]="button?.tip" [matTooltipClass]="{'pre-line':true}"
+                  matTooltipPosition="above" *ngIf="button.type !== 'icon'"
+                  (click)="buttonClick(row,column,$event,button?.onClick)"
+                  [disabled]="columnFunc(row,column,button?.disabled) " [ngStyle]="_getStyle(row,button)"
+                  [hidden]="columnFunc(row,column,button?.hidden)"
+                  class="{{button.shape?button.shape:'mat-raised-button'}} mat-primary" style="margin-right: 5px;"
+                  [title]="_getTitle(row,column)">
+                  {{_getName(row,button)}}
+                  <mat-icon *ngIf="button.icon" [class]="'qf '+ button.icon"></mat-icon>
+                </button>
+
+                <button mat-icon-button color="accent" *ngIf="button.type === 'icon'"
+                  (click)="buttonClick(row,column,$event,button?.onClick)" [matTooltip]="button?.tip"
+                  [matTooltipClass]="{'pre-line':true}" matTooltipPosition="above"
+                  [disabled]="columnFunc(row,column,button?.disabled) " [ngStyle]="_getStyle(row,button)"
+                  [hidden]="columnFunc(row,column,button?.hidden)" class="mat-icon-button mat-primary">
+                  <mat-icon [class]="'qf '+ button.icon"></mat-icon>
+                </button>
+              </ng-container>
+
+            </span>
+
+            <span *ngSwitchDefault class="matCellSpan" [ngStyle]="_getStyle(row,column)" [title]="_getTitle(row,column)"
+              [innerHtml]="_getValue(row,column)"> </span>
+          </mat-cell>
+
+          <mat-footer-cell *matFooterCellDef
+            [ngStyle]="{'justify-content': column.align,'flex': column.width ,'min-width': column.minWidth}">
+            <div style="width: 100%;overflow: hidden;">
+              <!-- <mat-form-field  *ngIf="column.filter" style="width: 100%">
+              <input matInput (input)="setColumnFilterValue(column,$event)">
+            </mat-form-field> -->
+              <span class="matCellSpan" *ngIf="column.footerValue" [innerHtml]="_getFooterValue(column)"> </span>
+            </div>
+
+          </mat-footer-cell>
+
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnsToDisplay;sticky: true;"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="matRow drop-box" (click)="_toggle(row,$event)"
+          [ngClass]="{'canSelectText':canSelectText,'cantSelectText':!canSelectText}" [ngStyle]="_getRowStyle(row)"
+          cdkDrag [title]="_getRowTitle(row)"></mat-row>
+
+        <!-- columnFilter -->
+        <ng-container *ngIf="_isFooter">
+          <mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></mat-footer-row>
+        </ng-container>
+
+      </mat-table>
+
+    </mat-radio-group>
+  </div>
+
+  <mat-card #tableFoot [hidden]="!_isToolbar" class="paginatorCon tableFoot">
+    <div class="selNum" *ngIf="_isMsg">
+      <span *ngIf="_selection.selected.length < 1  && _filterValue.length === 0" class="selText">
+        记录数:{{_dataSource.data.length}}
+      </span>
+      <span *ngIf="_selection.selected.length > 0 && _filterValue.length === 0"
+        class="selText">选择：{{_selection.selected.length}}/{{_dataSource.data.length}}</span>
+      <div *ngIf=" _filterValue.length > 0" class="selText">
+        筛选选择:{{_filterSelected.length}}&thinsp;/&thinsp;{{_dataSource.filteredData.length}}&thinsp;({{_selection.selected.length}}/{{_dataSource.data.length}})
+      </div>
+    </div>
+    <mat-form-field id="keywords" *ngIf="_isFilter" [ngClass]="{'filter': _isFilter,'paginatorField':_isMsg}"
+      [ngStyle]="{'padding-left':_isMsg?'0px':'15px'}" class="fieldInput magnify tableFootIpt" style="float: left"
+      floatPlaceholder="never" style="max-height: 46px">
+      <mat-icon class="qf icon-filter filterIcon" matPrefix>
+      </mat-icon>
+      <span matPrefix class="matPrefix"></span>
+      <input matInput (input)="_applyFilter($event.target.value)" [placeholder]=" _filterValue.length > 0 ? '' : '筛选'"
+        [(ngModel)]="_filterValue">
+    </mat-form-field>
+    <mat-paginator class="pagin" [hidden]="!_isPaginator" [length]="_dataSource.data.length"
+      [hidePageSize]="_hidePageSize" [pageSize]="40" [showFirstLastButtons]="_showFirstLastButtons"
+      [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </mat-card>
+</div>

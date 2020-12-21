@@ -1,0 +1,51 @@
+<mat-form-field class="formField" *ngIf="_isWithInput" style="width: calc(100% - 4px);">
+
+  <mat-chip-list #chipList [multiple]="_isMulti" style="margin: 40px 0 0 45px">
+    <mat-chip class="chip_item" *ngFor="let option of _options; index as i"
+      [matTooltip]="option[_valueType.label] || ''" [value]="option" [selectable]="_isCanSelect"
+      [removable]="_isCanDelete" (click)="checked(option)" color="primary"
+      [selected]="_isCanSelect && _getSelected(option)" [disabled]="option.disabled" (removed)="remove(option, i)">
+      <span *ngIf="!_isHtmlLabel">{{option[_valueType.label] || option}}</span>
+      <span *ngIf="_isHtmlLabel" [innerHTML]='option[_valueType.label]|safeHtml'></span>
+      <mat-icon matChipRemove class="qf icon-close" *ngIf="_isCanDelete"></mat-icon>
+    </mat-chip>
+    <mat-label>{{isCanAdd ? (label || '') + '（输入后按Enter可新增）' : label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+    <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="_separatorKeysCodes"
+      (input)="inputValueChange($event)" (focus)="inputFocus()" (matChipInputTokenEnd)="add($event)">
+
+  </mat-chip-list>
+</mat-form-field>
+
+
+<!-- <mat-form-field class="formField" *ngIf="_isWithAutocomplete">
+  <mat-chip-list #chipAutocomplete>
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+      <span *ngIf="!_isHtmlLabel">{{option[_valueType.label] || option}}</span>
+      <span *ngIf="_isHtmlLabel" [innerHTML]='option[_valueType.label]|safeHtml'></span>
+      <mat-icon matChipRemove class="qf icon-close" *ngIf="_isCanDelete"></mat-icon>
+    </mat-chip>
+    <input [placeholder]="label" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+      [matChipInputFor]="chipAutocomplete" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+      {{fruit}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field> -->
+
+
+<ng-container *ngIf="!_isWithInput">
+  <mat-chip-list [multiple]="_isMulti" style="margin: 40px 0 0 45px">
+    <mat-chip class="chip_item" *ngFor="let option of _options; index as i"
+      [matTooltip]="option[_valueType.label] || ''" [value]="option" [selectable]="_isCanSelect"
+      [removable]="_isCanDelete" (click)="checked(option)" color="primary"
+      [selected]="_isCanSelect && _getSelected(option)" [disabled]="option.disabled" (removed)="remove(option, i)">
+      <span *ngIf="!_isHtmlLabel">{{option[_valueType.label] || option}}</span>
+      <span *ngIf="_isHtmlLabel" [innerHTML]='option[_valueType.label]|safeHtml'></span>
+      <mat-icon matChipRemove class="qf icon-close" *ngIf="_isCanDelete"></mat-icon>
+    </mat-chip>
+
+  </mat-chip-list>
+</ng-container>

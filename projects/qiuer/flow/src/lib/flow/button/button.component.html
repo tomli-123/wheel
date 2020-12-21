@@ -1,0 +1,26 @@
+<ng-container *ngIf="!_fs.flexBtnShow && _buttons && _buttons.length !== 0">
+  <div class="proc_btn-list" *ngIf="isOpen">
+    <!-- <ng-container *ngFor="let button of _buttons"> -->
+    <div dynLayout [layout_data]="button.style" *ngFor="let button of _buttons" [hidden]="_isChildHidden(button.id)">
+      <dynamic-container [metadata]="button" [parent]="_self()">
+      </dynamic-container>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+  <button #btn matTooltip="操作" mat-fab color="primary" matTooltipPosition="after" class="proc_transformBtn"
+    (click)="buttonStateSwitch();">
+    <mat-icon [@switchAnimation]="isOpen?'bottom':'top'" class="qf icon-chevron-down"></mat-icon>
+  </button>
+</ng-container>
+
+<div *ngIf="_fs.flexBtnShow" class="proc_btn-list">
+  <!-- <ng-container *ngFor="let button of _buttons">
+    <dynamic-container [metadata]="button" [parent]="_self()">
+    </dynamic-container>
+  </ng-container> -->
+
+  <div dynLayout [layout_data]="button.style" *ngFor="let button of _buttons" [hidden]="_isChildHidden(button.id)">
+    <dynamic-container [metadata]="button" [parent]="_self()">
+    </dynamic-container>
+  </div>
+</div>

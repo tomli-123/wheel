@@ -1,0 +1,6 @@
+<div #chart class="chart_content" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <div echarts [options]="option" [merge]="_data" class="chart" (chartInit)="_onChartInit($event)"
+    (chartClick)="_onChartClick($event)" (chartDblClick)="_onChartDblClick($event)">
+
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="tree_content" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" [class]="verticalSpacing">
+
+    <!-- <mat-tree-node (click)="_clickTree(node)" *matTreeNodeDef="let node" matTreeNodePadding
+      [matTreeNodePaddingIndent]="indent" [ngClass]="{'checked':checkedNode === node}">
+
+
+      <button mat-icon-button disabled></button>
+      <mat-checkbox *ngIf="_isCheck" class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+        (change)="todoLeafItemSelectionToggle(node)">{{node.name}}</mat-checkbox>
+      <span *ngIf="!_isCheck">{{node.name}}</span>
+
+    </mat-tree-node>
+
+    <mat-tree-node (click)="_clickTree(node)" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+      [matTreeNodePaddingIndent]="indent" [ngClass]="{'checked':checkedNode === node}">
+      <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+        <mat-icon
+          [class]="treeControl.isExpanded(node) ? 'toggle-right qf icon-chevron-down' : 'toggle-right qf icon-chevron-right'">
+        </mat-icon>
+      </button>
+      <mat-checkbox *ngIf="_isCheck && _isMultiple" [checked]="descendantsAllSelected(node)"
+        [indeterminate]="descendantsPartiallySelected(node)" (change)="todoItemSelectionToggle(node)">{{node.name}}
+      </mat-checkbox>
+      <span *ngIf="!_isCheck || !_isMultiple ">{{node.name}}</span>
+    </mat-tree-node> -->
+
+
+    <mat-tree-node (click)="_clickTree(node)" *matTreeNodeDef="let node" matTreeNodePadding
+      [matTreeNodePaddingIndent]="indent" [ngClass]="{'checked':checkedNode === node}">
+
+      <div style="display: flex;align-items: center;width: 100%;" [ngClass]="{ 
+      'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+      'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+      'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node,
+      'node_pause': node.status !== 'A'
+    }" [draggable]="isDrop" (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+        (drop)="handleDrop($event, node);" (dragend)="handleDragEnd($event);" (mouseenter)="treeEnter($event, node)"
+        (mouseleave)="treeLeave($event)">
+        <button mat-icon-button disabled></button>
+        <mat-checkbox *ngIf="_isCheck" class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+          (change)="todoLeafItemSelectionToggle(node)">
+          <span [innerHtml]="_getCusLabel(node)|safeHtml"></span>
+        </mat-checkbox>
+        <span *ngIf="!_isCheck" [innerHtml]="_getCusLabel(node)|safeHtml"></span>
+        <ng-container *ngFor="let button of buttons">
+          <span [hidden]="columnFunc(node, button?.hidden) && showNode !== node">
+            <button mat-icon-button color="accent" (click)="buttonClick(node, $event, button?.onClick)"
+              [matTooltip]="button?.tip" matTooltipPosition="above" [disabled]="columnFunc(node, button?.disabled)"
+              class="mat-icon-button mat-primary">
+              <mat-icon [class]="'qf '+ button.icon"></mat-icon>
+            </button>
+          </span>
+        </ng-container>
+      </div>
+
+
+    </mat-tree-node>
+
+    <mat-tree-node (click)="_clickTree(node)" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+      [matTreeNodePaddingIndent]="indent" [ngClass]="{'checked':checkedNode === node}">
+
+      <div style="display: flex;align-items: center;width: 100%;" [ngClass]="{ 
+      'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+      'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+      'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node,
+      'node_pause': node.status !== 'A'
+    }" [draggable]="isDrop" (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+        (drop)="handleDrop($event, node);" (dragend)="handleDragEnd($event);" (mouseenter)="treeEnter($event, node)"
+        (mouseleave)="treeLeave($event)">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+          <mat-icon
+            [class]="treeControl.isExpanded(node) ? 'toggle-right qf icon-chevron-down' : 'toggle-right qf icon-chevron-right'">
+          </mat-icon>
+        </button>
+        <mat-checkbox *ngIf="_isCheck && _isMultiple" [checked]="descendantsAllSelected(node)"
+          [indeterminate]="descendantsPartiallySelected(node)" (change)="todoItemSelectionToggle(node)">
+          <span [innerHtml]="_getCusLabel(node)|safeHtml"></span>
+        </mat-checkbox>
+        <span *ngIf="!_isCheck || !_isMultiple" [innerHtml]="_getCusLabel(node)|safeHtml"></span>
+        <ng-container *ngFor="let button of buttons">
+          <span [hidden]="columnFunc(node, button?.hidden) && showNode !== node">
+            <button mat-icon-button color="accent" (click)="buttonClick(node, $event, button?.onClick)"
+              [matTooltip]="button?.tip" matTooltipPosition="above" [disabled]="columnFunc(node, button?.disabled)"
+              class="mat-icon-button mat-primary" [ngStyle]="getStyle(node, button?.style)">
+              <mat-icon [class]="'qf '+ button.icon"></mat-icon>
+            </button>
+          </span>
+        </ng-container>
+      </div>
+
+    </mat-tree-node>
+
+
+  </mat-tree>
+</div>

@@ -1,0 +1,11 @@
+{
+  "name": "@qiuer/component",
+  "version": "3.1.1-beta.13",
+  "peerDependencies": {
+    "@angular/common": "^10.0.9",
+    "@angular/core": "^10.0.9"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

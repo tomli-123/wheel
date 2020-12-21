@@ -1,0 +1,45 @@
+<div class="queryContent">
+  <div class="query">
+    <div #query_form class="header m-form-bgc bg card">
+      <div class="container">
+        <mat-toolbar-row class="toolbar">
+          <div>
+            <button mat-button (click)="showOrHide();">
+              <mat-icon class="qf icon-apple-keyboard-control" *ngIf="!isShowForm"></mat-icon>
+              <mat-icon class="qf icon-magnify" *ngIf="isShowForm"></mat-icon>
+            </button>
+          </div>
+          <div fxFlex></div>
+          <div>
+            <button mat-button matTooltip="新页面打开" (click)="openNewPage();">
+              <mat-icon class="qf icon-share"></mat-icon>
+            </button>
+            <button mat-button matTooltip="打开二维码" (click)="openShareDialog();">
+              <mat-icon class="qf icon-qrcode"></mat-icon>
+            </button>
+            <button mat-button matTooltip="帮助" *ngIf="helpTabs"  (click)="openHelpDialog();">
+              <mat-icon class="qf icon-help"></mat-icon>
+            </button>
+          </div>
+        </mat-toolbar-row>
+        <div class="form m-form-bgc" [hidden]="isShowForm" style="padding-bottom: 15px;">
+          <div dynLayout *ngIf="_formChild" [layout_data]="_formChild['style']">
+            <dynamic-container [metadata]="_formChild" [parent]="_self()">
+
+            </dynamic-container>
+          </div>
+          <div dynLayout *ngIf="_buttonChild" [layout_data]="_buttonChild['style']" class="buttonAlign">
+            <dynamic-container [metadata]="_buttonChild" [parent]="_self()">
+
+            </dynamic-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div #query_data class="content showContentBg boxing"  *ngIf="_dataChild" dynLayout  [layout_data]="_dataChild['style']">
+    <dynamic-container  [metadata]="_dataChild" [parent]="_self()">
+
+    </dynamic-container>
+  </div>
+</div>

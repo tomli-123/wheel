@@ -1,0 +1,17 @@
+<mat-form-field class="formField" [ngStyle]="{'width':tip?'90%':'100%'}" [ngClass]="{'noPaddingRight':tip}">
+  <mat-label>{{label||''+(_pending?' . . .':'')}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+  <input matInput [autocomplete]="_autocomplete" [formControl]="_formControl" [type]="_valueType.type">
+  <span matPrefix *ngIf="prefixHtml" [innerHtml]="prefixHtml | safeHtml" class="custom"></span>
+  <span matSuffix *ngIf="suffixHtml" [innerHtml]="suffixHtml | safeHtml" class="custom"></span>
+  <mat-error *ngIf="_formControl.hasError('required') &&  requiredMsg">
+    {{requiredMsg}}
+  </mat-error>
+  <mat-error *ngIf="_formControl.hasError('pattern') && patternMsg">
+    {{patternMsg}}
+  </mat-error>
+</mat-form-field>
+<button *ngIf="tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="tip"
+  [matTooltipClass]="{'pre-line':true}" (mouseenter)="mouserOnHelpButton = true"
+  (mouseleave)="mouserOnHelpButton = false" (click)="tooltip.toggle();" [color]="mouserOnHelpButton?'primary':''">
+  <mat-icon class="qf icon-help"></mat-icon>
+</button>

@@ -1,0 +1,17 @@
+.formField{
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+:host ::ng-deep .md-drppicker {
+  width: max-content !important;
+  position: fixed;
+  left: auto !important;
+}
+
+@media (max-width: 599px) {
+  .md-drppicker {
+    width: auto;
+  }
+}

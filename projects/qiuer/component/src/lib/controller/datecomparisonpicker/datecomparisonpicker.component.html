@@ -1,0 +1,28 @@
+<mat-form-field class="example-form-field {{value.length!==0 ? 'hoverClass' : ''}}" appearance="fill"
+  (click)="openPicker()">
+  <mat-label>{{label}}</mat-label>
+  <mat-date-range-input [formGroup]="_defaultDate" [rangePicker]="campaignOnePicker"
+    [comparisonStart]="comparisonDateStart" [comparisonEnd]="comparisonDateEnd" [max]="maxDate" [min]="minDate"
+    [separator]="separator" [required]="required" [disabled]="disabled">
+    <input matStartDate formControlName="startDate" (dateChange)="startChange($event)" readonly>
+    <input matEndDate formControlName="endDate" (dateChange)="endChange($event)" readonly>
+  </mat-date-range-input>
+
+  <span class="suffixView_" matSuffix>
+
+    <div class="suffixContent_">
+
+      <mat-datepicker-toggle [for]="campaignOnePicker"></mat-datepicker-toggle>
+
+      <button class="suffixClear_" mat-button mat-icon-button
+        (click)="_formControl.setValue(null); clearValue(); $event.stopPropagation()"
+        [disabled]="_formControl.disabled">
+        <mat-icon class="qf icon-close"></mat-icon>
+      </button>
+
+    </div>
+
+  </span>
+
+  <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+</mat-form-field>

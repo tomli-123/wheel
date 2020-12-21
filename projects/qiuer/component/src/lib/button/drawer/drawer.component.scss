@@ -1,0 +1,50 @@
+.navBox {
+  position: relative;
+  margin: 0px 5px;
+  outline: none;
+  z-index:101;
+
+  .navBoxBtn {
+    margin: 0px 3px;
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+
+  .navMenuBox {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    height: 0px;
+    // z-index: 9;
+    transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+
+    ::ng-deep .buttonContent {
+      margin-top: 5px !important;
+    }
+    
+  }
+}
+.btnContent {
+  // width: 100%;
+  box-sizing: border-box;
+  // height: 100%;
+  position: relative;
+  min-width: 67.5px;
+  min-height:  10px;
+}
+.label {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+}
+.position {
+  position: absolute;
+}
+.transform {
+  transform: translate(-50%, -50%);
+}

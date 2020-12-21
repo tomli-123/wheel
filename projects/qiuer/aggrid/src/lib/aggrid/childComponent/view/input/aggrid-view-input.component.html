@@ -1,0 +1,11 @@
+
+<input #input matInput 
+[formControl]="_formControl" 
+[placeholder]="label" 
+[pattern]="_pattern" 
+[required]="_required"
+[type]="_valueType"
+(change)="valuechange($event)"
+>
+
+<!-- [type]="_valueType.type" -->

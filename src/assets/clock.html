@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.clocks {
+				height: 100vh;
+				width: 100vw;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+			}
+			
+			.box {
+				position: relative;
+				height: 700px;
+			}
+			
+			.canvas {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: #000000;">
+		<div class="clocks">
+			<div class="box">
+				<canvas id="monthsCanvas" class="canvas" width="700" height="700"></canvas>
+				<canvas id="datesCanvas" class="canvas" width="700" height="700"></canvas>
+				<canvas id="weeksCanvas" class="canvas" width="700" height="700"></canvas>
+				<canvas id="hoursCanvas" class="canvas" width="700" height="700"></canvas>
+				<canvas id="minutesCanvas" class="canvas" width="700" height="700"></canvas>
+				<canvas id="secondsCanvas" width="700" height="700"></canvas>
+				<canvas id="maskCanvas" class="canvas" width="700" height="700"></canvas>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var timeout;
+		var monthsCanvas, monthsCtx, monthsRadius = 350 * 0.18;
+		var datesCanvas, datesCtx, datesRadius = 350 * 0.335;
+		var weeksCanvas, weeksCtx, weeksRadius = 350 * 0.48;
+		var hoursCanvas, hoursCtx, hoursRadius = 350 * 0.62;
+		var minutesCanvas, minutesCtx, minutesRadius = 350 * 0.8;
+		var secondsCanvas, secondsCtx, secondsRadius = 350 * 1;
+		var maskCanvas, maskCtx
+
+		var _months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+		var _dates = ["一日", "二日", "三日", "四日", "五日", "六日", "七日", "八日", "九日", "十日", "十一日", "十二日", "十三日", "十四日", "十五日", "十六日", "十七日", "十八日", "十九日", "二十日", "二十一日", "二十二日", "二十三日", "二十四日", "二十五日", "二十六日", "二十七日", "二十八日", "二十九日", "三十日", "三十一日"];
+		var _weeks = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+		var _hours = ["零时", "一时", "二时", "三时", "四时", "五时", "六时", "七时", "八时", "九时", "十时", "十一时", "十二时", "十三时", "十四时", "十五时", "十六时", "十七时", "十八时", "十九时", "二十时", "二十一时", "二十二时", "二十三时"];
+		var _minutes = ["零分", "一分", "二分", "三分", "四分", "五分", "六分", "七分", "八分", "九分", "十分", "十一分", "十二分", "十三分", "十四分", "十五分", "十六分", "十七分", "十八分", "十九分", "二十分", "二十一分", "二十二分", "二十三分", "二十四分", "二十五分", "二十六分", "二十七分", "二十八分", "二十九分", "三十分", "三十一分", "三十二分", "三十三分", "三十四分", "三十五分", "三十六分", "三十七分", "三十八分", "三十九分", "四十分", "四十一分", "四十二分", "四十三分", "四十四分", "四十五分", "四十六分", "四十七分", "四十八分", "四十九分", "五十分", "五十一分", "五十二分", "五十三分", "五十四分", "五十五分", "五十六分", "五十七分", "五十八分", "五十九分"];
+		var _seconds = ["零秒", "一秒", "二秒", "三秒", "四秒", "五秒", "六秒", "七秒", "八秒", "九秒", "十秒", "十一秒", "十二秒", "十三秒", "十四秒", "十五秒", "十六秒", "十七秒", "十八秒", "十九秒", "二十秒", "二十一秒", "二十二秒", "二十三秒", "二十四秒", "二十五秒", "二十六秒", "二十七秒", "二十八秒", "二十九秒", "三十秒", "三十一秒", "三十二秒", "三十三秒", "三十四秒", "三十五秒", "三十六秒", "三十七秒", "三十八秒", "三十九秒", "四十秒", "四十一秒", "四十二秒", "四十三秒", "四十四秒", "四十五秒", "四十六秒", "四十七秒", "四十八秒", "四十九秒", "五十秒", "五十一秒", "五十二秒", "五十三秒", "五十四秒", "五十五秒", "五十六秒", "五十七秒", "五十八秒", "五十九秒"];
+
+		var _date = new Date();
+		var hours = _date.getHours();
+		var minutes = _date.getMinutes();
+		var seconds = _date.getSeconds();
+		var months = _date.getMonth() + 1;
+		var dates = _date.getDate();
+		var weeks = _date.getDay();
+		/**
+		 * ctx: canvas context
+		 * canvas: canvas element
+		 * arr: months、dates等数组
+		 * name: element 的 id 名称
+		 * radius: canvas 半径
+		 * start: 起始时间（时分秒等）
+		 * end: 终止时间（当前时分秒数）
+		 * speed: 动画速度
+		 * time: 每隔多少毫秒刷新一次（延时时间）
+		 **/ 
+		function initCanvas(ctx, canvas, arr, name, radius, start, end, speed, time) {
+			this[ctx].clearRect(0, 0, this[ctx].canvas.width, this[ctx].canvas.height);
+			this[ctx].save();
+			this[ctx].translate(this[canvas].width / 2, this[canvas].height / 2);
+			this[ctx].beginPath();
+			this[ctx].font = '14px Arial';
+			this[ctx].textAlign = 'center';
+			this[ctx].textBaseline = 'middle';
+			this[ctx].fillStyle = '#FFFFFF';
+
+			arr.forEach((item, index) => {
+				const theta = index * (360 / arr.length) * 2 * Math.PI / 360;
+				const x = radius * 0.92 * Math.cos(theta);
+				const y = radius * 0.92 * Math.sin(theta);
+				this[ctx].save();
+				this[ctx].translate(x, y);
+				this[ctx].rotate(theta);
+				this[ctx].fillText(item, 0, 0);
+				this[ctx].restore();
+			})
+			this[ctx].restore();
+			_animation(name, start, speed, end, time);
+		}
+
+		function initMask() {
+			maskCtx.clearRect(0, 0, maskCtx.canvas.width, maskCtx.canvas.height);
+			maskCtx.save();
+			maskCtx.translate(maskCanvas.width / 2, maskCanvas.height / 2);
+			maskCtx.beginPath();
+			maskCtx.arc(0, 0, maskCanvas.width / 2, 0, 2 * Math.PI);
+			maskCtx.fillStyle = "rgba(0, 0, 0, 0.7)";
+			maskCtx.fill();
+			maskCtx.clearRect(20, -11, 330, 21);
+		}
+
+		function getCurrentMonthLast() {
+			const date = new Date();
+			let currentMonth = date.getMonth();
+			let nextMonth = ++currentMonth;
+			let nextMonthFirstDay = new Date(date.getFullYear(), nextMonth, 1);
+			let oneDay = 1000 * 60 * 60 * 24;
+			return new Date(nextMonthFirstDay - oneDay);
+		}
+
+		function _rotate() {
+			_date = new Date();
+			months = _date.getMonth() + 1;
+			dates = _date.getDate();
+			weeks = _date.getDay();
+			hours = _date.getHours();
+			minutes = _date.getMinutes();
+			seconds = _date.getSeconds();
+			_animation('seconds', -(seconds - 1) * 6, 0.2, -seconds * 6, 10);
+			if(seconds === 0) {
+				_animation('minutes', -(minutes - 1) * 6, 0.2, -minutes * 6, 10);
+				if(minutes === 0) {
+					_animation('hours', -(hours - 1) * 15, 0.2, -hours * 15, 30);
+					if(hours === 0) {
+						_dates.length = getCurrentMonthLast().getDate();
+						_animation('dates', -(dates - 1) * 360 / _dates.length, 0.2, -dates * 360 / _dates.length, 30);
+						_animation('weeks', -(weeks - 1) * 360 / 7, 0.2, -weeks * 360 / 7, 30);
+						if(dates === 1) {
+							_animation('months', -(months - 1) * 360 / 7, 0.2, -months * 360 / 7, 30);
+						}
+					}
+				}
+			}
+		}
+
+		function _animation(ele, init, speed, aims, time) {
+			const base = init - speed;
+			this[ele + 'Canvas'].style.transform = 'rotate(' + base + 'deg)';
+			timeout = setTimeout(() => {
+				if(init - 2 * speed >= aims) { // 还没有达到目标
+					_animation(ele, base, speed, aims);
+				} else {
+					clearTimeout('timeout');
+				}
+			}, time);
+		}
+
+		(function() {
+			monthsCanvas = document.getElementById('monthsCanvas');
+			monthsCtx = monthsCanvas.getContext('2d');
+
+			datesCanvas = document.getElementById('datesCanvas');
+			datesCtx = datesCanvas.getContext('2d');
+
+			weeksCanvas = document.getElementById('weeksCanvas');
+			weeksCtx = weeksCanvas.getContext('2d');
+
+			hoursCanvas = document.getElementById('hoursCanvas');
+			hoursCtx = hoursCanvas.getContext('2d');
+
+			minutesCanvas = document.getElementById('minutesCanvas');
+			minutesCtx = minutesCanvas.getContext('2d');
+
+			secondsCanvas = document.getElementById('secondsCanvas');
+			secondsCtx = secondsCanvas.getContext('2d');
+
+			maskCanvas = document.getElementById('maskCanvas');
+			maskCtx = maskCanvas.getContext('2d');
+
+			_dates.length = getCurrentMonthLast().getDate();
+
+			initCanvas('secondsCtx', 'secondsCanvas', this._seconds, 'seconds', this.secondsRadius, -(seconds - 1) * 6, -seconds * 6, 0.2, 10);
+			initCanvas('minutesCtx', 'minutesCanvas', this._minutes, 'minutes', this.minutesRadius, -(minutes - 1) * 6, -minutes * 6, 0.2, 10);
+			initCanvas('hoursCtx', 'hoursCanvas', this._hours, 'hours', this.hoursRadius, -(hours - 1) * 15, -hours * 15, 0.2, 30);
+			initCanvas('weeksCtx', 'weeksCanvas', this._weeks, 'weeks', this.weeksRadius, -(weeks - 2) * 360 / 7, -(weeks - 1) * 360 / 7, 0.2, 30);
+			initCanvas('datesCtx', 'datesCanvas', this._dates, 'dates', this.datesRadius, -(dates - 2) * 360 / _dates.length, -(dates - 1) * 360 / _dates.length, 0.2, 30);
+			initCanvas('monthsCtx', 'monthsCanvas', this._months, 'months', this.monthsRadius, -(months - 2) * 30, -(months - 1) * 30, 0.2, 30);
+
+			initMask();
+
+			setInterval(_rotate, 1000);
+
+		})();
+	</script>
+</html>

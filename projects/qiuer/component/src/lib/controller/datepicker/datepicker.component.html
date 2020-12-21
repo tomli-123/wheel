@@ -1,0 +1,10 @@
+<mat-form-field class="formField">
+	<mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+	<input matInput autocomplete="off" [matDatepicker]="datepicker" [formControl]="_formControl" [min]="_minDate" [max]="_maxDate"   [matDatepickerFilter]="_dayFilter" >
+	<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+	<mat-datepicker #datepicker></mat-datepicker>
+	<button mat-button *ngIf="_hasClear && _formControl.value" matSuffix mat-icon-button
+		(click)="_formControl.setValue(null); $event.stopPropagation()" [disabled]="_formControl.disabled">
+		<mat-icon class="qf icon-close"></mat-icon>
+	</button>
+</mat-form-field>

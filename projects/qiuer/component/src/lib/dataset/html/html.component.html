@@ -1,0 +1,8 @@
+<div class="loading-shade loading-shade-bgc" *ngIf="_pending">
+  <mat-spinner *ngIf="_pending && !_hiddenLoading"></mat-spinner>
+</div>
+<div #htmlContent class="html_content" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <div [innerHTML]="_template|safeHtml">
+
+  </div>
+</div>

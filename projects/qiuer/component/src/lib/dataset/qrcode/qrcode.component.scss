@@ -1,0 +1,11 @@
+
+.qrcode_content{
+  height: 100%;
+  position: relative;
+  text-align: center;
+  .iframe{
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+  }
+}

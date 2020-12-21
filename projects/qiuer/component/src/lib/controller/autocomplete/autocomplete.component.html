@@ -1,0 +1,21 @@
+<mat-form-field class="formField" [ngStyle]="{'width':tip?'90%':'100%'}" [ngClass]="{'noPaddingRight':tip}">
+  <mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+  <input matInput type="text"  [formControl]="_formControl" [matAutocomplete]="autocomplete"
+    (focus)="iptFocus()" autocomplete="off">
+  <div style="display: none;position: absolute;top: 35px; font-size: 12px;color: red;"></div>
+  <mat-autocomplete #autocomplete [displayWith]="displayFn" (optionSelected)="optionSelected()">
+    <mat-option *ngFor="let option of _options" [matTooltip]="option[_valueType.label] || ''" [value]="option"
+      [ngClass]="{'hidden':_hasFilter&&_fileredOptions.indexOf(option)===-1}">{{option[_valueType.label]}}</mat-option>
+  </mat-autocomplete>
+  <button mat-button *ngIf="_hasClear && _formControl.value" matSuffix mat-icon-button
+    (click)="_formControl.setValue(null); $event.stopPropagation()" [disabled]="_formControl.disabled">
+    <mat-icon class="qf icon-close"></mat-icon>
+  </button>
+</mat-form-field>
+
+<button *ngIf="tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true"
+  #tooltip="matTooltip" [matTooltip]="tip" [matTooltipClass]="{'pre-line':true}"
+  (mouseenter)="mouserOnHelpButton = true;" (mouseleave)="mouserOnHelpButton = false;"
+  [color]="mouserOnHelpButton?'primary':''" (click)="tooltip.toggle();">
+  <mat-icon class="qf icon-help"></mat-icon>
+</button>

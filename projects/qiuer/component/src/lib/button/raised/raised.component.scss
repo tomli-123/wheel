@@ -1,0 +1,31 @@
+.buttonContent {
+  margin: 0px 5px;
+
+  mat-icon {
+    font-size: 26px;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.position {
+  position: absolute;
+}
+
+.transform {
+  transform: translate(-50%, -50%);
+}
+
+.btnContent {
+  // width: 100%;
+  box-sizing: border-box;
+
+  // height: 100%;
+  position: relative;
+  min-width: 67.5px;
+  min-height: 10px;
+}

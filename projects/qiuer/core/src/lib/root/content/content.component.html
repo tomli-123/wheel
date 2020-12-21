@@ -1,0 +1,6 @@
+
+<div  dynLayout [layout_data]="child.style" *ngFor="let child of _childs;">
+  <dynamic-container [metadata]="child" [parent]="_self()">
+
+  </dynamic-container>
+</div>

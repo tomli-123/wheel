@@ -1,0 +1,27 @@
+<div id="buttonGroup_content" appClazz [clazz]="_clazz">
+  <!-- selfInit && _isChildHidden(child.id)-->
+  <div [class]="groupClass + ' button_item start_group'">
+    <div dynLayout [layout_data]="child.style" *ngFor="let child of frontChilds;" [hidden]="_isChildHidden(child.id)">
+      <dynamic-container [metadata]="child" [parent]="_self()">
+
+      </dynamic-container>
+    </div>
+  </div>
+
+  <div [class]="groupClass + ' button_item center_group'">
+    <div dynLayout [layout_data]="child.style" *ngFor="let child of middleChilds" [hidden]="_isChildHidden(child.id)">
+      <dynamic-container [metadata]="child" [parent]="_self()">
+
+      </dynamic-container>
+    </div>
+  </div>
+
+  <div [class]="groupClass + ' button_item end_group'">
+    <div dynLayout [layout_data]="child.style" *ngFor="let child of backChilds" [hidden]="_isChildHidden(child.id)">
+      <dynamic-container [metadata]="child" [parent]="_self()">
+
+      </dynamic-container>
+    </div>
+  </div>
+
+</div>

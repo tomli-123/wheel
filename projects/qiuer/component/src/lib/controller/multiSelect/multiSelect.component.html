@@ -1,0 +1,38 @@
+<mat-form-field class="formField" [ngStyle]="{'width':tip?'90%':'100%'}" [ngClass]="{'noPaddingRight':tip}"
+  [title]="_formControl.value ? _formControl.value[_valueType.label] || '' : ''">
+  <mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+  <mat-select  [formControl]="_formControl" multiple panelOpen="true"
+    (openedChange)="openedChange($event,multSearch);" [matTooltip]="selectTip"  [matTooltipClass]="{'pre-line':true}">
+    <div class="filter-box row-cutline" [ngClass]="{'hidden': !_hasFilter && !canSelectAll }">
+      <mat-checkbox [hidden]="!canSelectAll" matPrefix #mult_checked [checked]="_formControl.value&&_isAllSelected()"
+        [indeterminate]="_indeterminate()" (change)="$event ? _masterToggle() : null;">
+      </mat-checkbox>
+
+      <span [ngClass]="{'hidden': !_canSelectAll || _hasFilter }">- 全选 -</span>
+      <!-- <input [ngClass]="{'hidden': !_hasFilter}" class="filter-input" [placeholder]="_filterPlaceholder" #multSearch
+        type="text" autocomplete="off"> -->
+      <input [ngClass]="{'hidden': !_hasFilter}" class="filter-input" [placeholder]="_filterPlaceholder" #multSearch
+        type="text" autocomplete="off" (input)="_filterChange(multSearch.value)" [value]="_filterValue">
+    </div>
+    <mat-select-trigger *ngIf="showType === 'number'">已选{{_formControl.value?.length }}个</mat-select-trigger>
+    <mat-option *ngFor="let item of options" [value]="item"
+      [ngClass]="{'hidden':_hasFilter&&_fileredOptions.indexOf(item)===-1}" [disabled]="item.disabled">
+      {{item[_valueType.label]|| item}}</mat-option>
+  </mat-select>
+  <button mat-button *ngIf="_formControl.value&&_formControl.value.length>0&&_haveClear" matSuffix mat-icon-button
+    (click)="_formControl.setValue([]); $event.stopPropagation()" [disabled]="_formControl.disabled">
+    <mat-icon class="qf icon-close"></mat-icon>
+  </button>
+  <mat-error *ngIf="_formControl.hasError('pattern') && !_formControl.hasError('required') && patternMsg">
+    {{requiredMsg}}
+  </mat-error>
+  <mat-error *ngIf="_formControl.hasError('required') && patternMsg">
+    {{patternMsg}}
+  </mat-error>
+</mat-form-field>
+<button *ngIf="tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true"
+  #tooltip="matTooltip" [matTooltip]="tip" [matTooltipClass]="{'pre-line':true}"
+  (mouseenter)="mouserOnHelpButton = true;" (mouseleave)="mouserOnHelpButton = false;"
+  [color]="mouserOnHelpButton?'primary':''" (click)="tooltip.toggle();">
+  <mat-icon class="qf icon-help"></mat-icon>
+</button>

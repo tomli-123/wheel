@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:activiti="http://activiti.org/bpmn" 
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+  xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" 
+  xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.gtjaqh.net/process/ita">
+  <process id="Flow" name="" isExecutable="true">
+    <startEvent id="Start" name="开始">
+      <extensionElements>
+        <activiti:sendSms>false</activiti:sendSms>
+        <activiti:supportCountersignReject>false</activiti:supportCountersignReject>
+        <activiti:browserNotice>false</activiti:browserNotice>
+      </extensionElements>
+    </startEvent>
+    <dataObject id="fpid" name="fpid">
+      <extensionElements>
+        <activiti:value></activiti:value>
+      </extensionElements>
+    </dataObject>
+    <extensionElements />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_WorkSheet">
+    <bpmndi:BPMNPlane id="BPMNPlane_WorkSheet" bpmnElement="WorkSheet">
+      <bpmndi:BPMNShape id="BPMNShape_Start" bpmnElement="Start">
+        <omgdc:Bounds x="135" y="34" width="35" height="35"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="142" y="10" width="22" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/qiuer/component",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@qiuer/core": "@qiuer/core",
+      "ng2-file-upload": "ng2-file-upload",
+      "angular2-qrcode": "angular2-qrcode",
+      "ngx-daterangepicker-material": "ngx-daterangepicker-material",
+      "ng-pick-datetime": "ng-pick-datetime",
+      "ngx-monaco-editor": "ngx-monaco-editor",
+      "ngx-ueditor": "ngx-ueditor",
+      "dhtmlx-gantt": "dhtmlx-gantt"
+    }
+  }
+}

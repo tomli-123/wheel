@@ -1,0 +1,18 @@
+<div class="expansionPanel_content">
+  <mat-accordion [multi]="multi">
+    <mat-expansion-panel *ngFor="let title of _titles;index as i" [expanded]="statusList[i]">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{titles[i] || ''}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div dynLayout [layout_data]="childs[i] ? childs[i]['style'] : {}">
+        <dynamic-container [metadata]="childs[i]" [parent]="_self()">
+
+        </dynamic-container>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

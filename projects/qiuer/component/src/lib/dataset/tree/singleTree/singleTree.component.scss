@@ -1,0 +1,49 @@
+// :host {
+  .tree_content {
+    height: 100%;
+    position: relative;
+    overflow: auto;
+
+    .verticalSpacing_trifleNarrow .mat-tree-node {
+      min-height: 40px;
+      height: 40px;
+    }
+
+    .verticalSpacing_narrow .mat-tree-node {
+      min-height: 30px;
+      height: 30px;
+    }
+
+    .verticalSpacing_vastNarrow .mat-tree-node {
+      min-height: 20px;
+      height: 20px;
+    }
+
+    .verticalSpacing_trifleWide .mat-tree-node {
+      height: 55px;
+    }
+
+    .verticalSpacing_wide .mat-tree-node {
+      height: 65px;
+    }
+  }
+
+  .drop-above {
+    border-top: 10px solid #dddddd;
+    margin-top: -10px;
+  }
+
+  .drop-below {
+    border-bottom: 10px solid #dddddd;
+    margin-bottom: -10px;
+  }
+
+  .drop-center {
+    background-color: #dddddd;
+  }
+
+  .checked {
+    background-color: rgba(0, 0, 0, 0.05);
+    font-weight: bolder;
+  }
+// }

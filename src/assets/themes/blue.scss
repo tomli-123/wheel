@@ -1,0 +1,363 @@
+@import '../../../../node_modules/@angular/material/_theming.scss';
+
+@include mat-core();
+$primary: mat-palette($mat-blue, 600);
+$accent:  mat-palette($mat-pink, 600);
+$warn:    mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+.dashboardbk {
+  background-color: #0969bb;
+}
+.searchHeaderBgc {
+  background-color: #1976d2;
+}
+.dlg-title {
+  background-color: #0969bb;
+}
+.mat-font-color{
+  color: map-get($mat-light-theme-foreground,text);
+}
+mat-tree-node:hover{
+  background-color: rgba(0,0,0,0.05);
+}
+.tree-node:hover{
+  background-color: rgba(0,0,0,0.05);
+}
+.funAddDiaTitle {
+  background-color: #bf360c;
+}
+
+.view .matRow:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.view .mat-cell {
+  border-right-color: #e6e6e6 !important;
+  border-bottom-color: #e6e6e6 !important;
+}
+
+.view .mat-header-row .mat-header-cell{
+  border-bottom: 1px solid #808080 !important;
+}
+
+.view .mat-row:hover {
+  background-color: #eeeeee;
+}
+
+ //codemirror的样式暂且保留，后面可能还有用
+ .mat-dialog-container .CodeMirror {
+   background-color: rgba(255, 255, 255, 0.9);
+   border-bottom: 1px solid #ddd;
+   color: rgba(0, 0, 0, 0.87);
+ }
+
+ .mat-dialog-container .CodeMirror-gutters {
+   background-color: rgba(255, 255, 255, 0.9);
+   color: rgba(0, 0, 0, 0.87);
+ }
+
+.searchHeaderBgc .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+.searchHeaderBgc .mat-form-field-placeholder,
+.searchHeaderBgc .mat-focused .mat-form-field-placeholder,
+.searchHeaderBgc .mat-select-arrow,
+.searchHeaderBgc .mat-select-value-text {
+  color: #fff;
+}
+
+.searchHeaderBgc .mat-form-field-ripple,
+.searchHeaderBgc .mat-form-field-underline {
+  background-color: #fff;
+}
+.activeRoleBgc {
+  background-color: #ccc !important;
+}
+// .funMng .mat-header-row mat-header-cell {
+//   border-bottom-color: rgba(0, 0, 0, 0.3) !important;
+// }
+/*dashboar页面的select*/
+mat-form-field.depcode .mat-form-field-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+mat-form-field.depcode .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+mat-form-field.depcode .mat-select-arrow{
+  color: rgba(255, 255, 255, 0.7);
+}
+mat-form-field.depcode .mat-select-value{
+  color: #FFF;
+}
+.mat-form-field-disabled .mat-form-field-underline {
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.42) 0, rgba(0, 0, 0, 0.42) 33%, transparent 0);
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+}
+/*主题颜色*/
+.font-color {
+  color: #000 !important;
+}
+
+.primary {
+  background-color: #1976d2;
+}
+.firstRow {
+  background-color: #1976d2; }
+.accent {
+  background-color: #00acc1;
+}
+
+.warn {
+  background-color: #bf360c;
+}
+
+.primary-color {
+  color: #1976d2;
+}
+
+.accent-color {
+  color: #00acc1;
+}
+
+.warn-color {
+  color: #bf360c;
+}
+/*手机端fn和dc的form主题颜色*/
+@media (max-width: 599px) {
+  .m-form-bgc {
+    background-color: white;
+  }
+}
+/*分割线*/
+.row-cutline {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+.column-cutline {
+  border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+.multiple-filter {
+  height: 48px;
+  width: 100%;
+  display: block;
+  color: #000;
+  position: sticky !important;
+  top: 0;
+  z-index: 9;
+  background-color: #fff;
+}
+
+mat-form-field.multiple-filter mat-checkbox.mat-checkbox {
+  padding: 0 0 0 16px;
+  margin-right: 8px;
+  line-height: 42px;
+}
+
+.multiple-filter .mat-icon {
+  padding: 0 0 0 16px;
+  margin-right: 8px;
+}
+
+/*mat-dialog-container.mat-dialog-container{*/
+/*padding: 0;*/
+/*overflow: hidden;*/
+/*}*/
+/*分割线*/
+.cutline-border {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/*解决dialog内容无法铺满问题*/
+mat-dialog-container.mat-dialog-container {
+  position: relative;
+}
+
+.label-color {
+  color: rgba(0, 0, 0, 0.54);
+}
+.multiple-filter.nocheckbox{
+  height: 47px;
+  padding: 0 0 0 16px;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+.multiple-filter.nocheckbox::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+.cutline-right{
+  border-right: 1px solid rgba(0,0,0,0.15) !important; }
+.cutline-top{
+  border-top: 1px solid rgba(0,0,0,0.15) !important;}
+.cutline-left{
+  border-left: 1px solid rgba(0,0,0,0.15) !important; }
+.cutline-bottom{
+  border-bottom: 1px solid rgba(0,0,0,0.15) !important;}
+//小三角
+.isActived .top-arrow {
+  display: block;
+  position: absolute;
+  right: 50%;
+  top: 35px;
+  margin-right: -8px;
+  z-index: 5;
+  /*兼容ie8-*/
+  border-top: 8px transparent dashed;
+  border-left: 6px transparent dashed;
+  border-right: 6px transparent dashed;
+  border-bottom: 8px #fff solid;
+}
+
+// 使用@media 手机版本无图片
+.query .header.bg {background-image: url(/assets/img/query/header-blue.png); background-size: cover;}
+.query .content.bg {background-image: url(/assets/img/query/content-blue.jpg); background-size: cover;}
+
+/* 报表主题 #f2f7fb */
+.query .report {border-collapse: collapse;}
+.query .report .titl {color:#000;background-color:#fff;border-color:#fff;}
+.query .report .head {color:#fff;background-color:#1e88e5;border-color:#b9bdce;}
+.query .report .dtlb {color:#000;background-color:#fffef8;border-color:#b9bdce;}
+.query .report .dtld {color:#000;background-color:#edf8fd;border-color:#b9bdce;}
+
+
+/*codemirror clipse theme*/
+.CodeMirror span.cm-meta { color: #FF1717; }
+.CodeMirror span.cm-keyword { line-height: 1em; font-weight: bold; color: #7F0055; }
+.CodeMirror span.cm-atom { color: #219; }
+.CodeMirror span.cm-number { color: #164; }
+.CodeMirror span.cm-def { color: #00f; }
+.CodeMirror span.cm-variable { color: black; }
+.CodeMirror span.cm-variable-2 { color: #0000C0; }
+.CodeMirror span.cm-variable-3, .CodeMirror span.cm-type { color: #0000C0; }
+.CodeMirror span.cm-property { color: black; }
+.CodeMirror span.cm-operator { color: black; }
+.CodeMirror span.cm-comment { color: #3F7F5F; }
+.CodeMirror span.cm-string { color: #2A00FF; }
+.CodeMirror span.cm-string-2 { color: #f50; }
+.CodeMirror span.cm-qualifier { color: #555; }
+.CodeMirror span.cm-builtin { color: #30a; }
+.CodeMirror span.cm-bracket { color: #cc7; }
+.CodeMirror span.cm-tag { color: #170; }
+.CodeMirror span.cm-attribute { color: #00c; }
+.CodeMirror span.cm-link { color: #219; }
+.CodeMirror span.cm-error { color: #f00; }
+
+.CodeMirror .CodeMirror-activeline-background { background: #e8f2ff; }
+.CodeMirror .CodeMirror-matchingbracket { outline:1px solid grey; color:black !important; }
+/*滚动条*/
+*::-webkit-scrollbar-track {
+  background-color: #292929;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #D9D9D9;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+.disabled{
+  color:rgba(0,0,0,0.3) !important;
+}
+.loading-shade-bgc {
+  background-color: rgba(0, 0, 0, 0.17);
+}
+//自定义table for bstb、
+.thead-font-color {
+  color: rgba(0, 0, 0, 0.54);
+}
+.thead-tr-border{
+  border-bottom: 1px solid #808080;
+}
+.thead-th-border{
+  border: 1px solid #808080;
+}
+.tbody-tr{
+  height: 47px;
+  padding: 0;
+  border: none;
+  align-items: center;
+  box-sizing: border-box;
+}
+.tbody-tr:hover{
+  background-color: #eeeeee !important;
+}
+.tbody-tr:nth-child(even){
+  background-color: #fafafa;
+}
+.tbody-td{
+  padding: 0 12px;
+  white-space: nowrap;
+  text-align: center;
+  height: 46px;
+  line-height: 46px;
+  text-overflow: ellipsis;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  border-right-color: #e6e6e6 !important;
+  border-bottom-color: #e6e6e6 !important;
+  font-size: 14px;
+  overflow: hidden;
+  height: 100%;
+  width: inherit;
+}
+.tbody-td:last-child{
+  border-right: none;
+}
+/*解决nat-row在滚动状态下宽度不是100%导致的背景色透明问题*/
+.mat-header-cell{
+  background-color: #FFFFFF;
+}
+
+
+.icon-pin-off , .icon-pin{
+    color:#4c3737;
+}
+
+// proc 字体颜色和边框背景
+.proc_border_color {
+  color: #1E88E5;
+}
+
+.proc_border_bgcolor {
+  background-color: #1E88E5;
+}
+
+/** 菜单栏搜索框背景色 */
+.sidenav-searchForm {
+  background-color: #ffffff; 
+}
+
+//container
+// 使用@media 手机版本无图片
+.main_content .showFormBg {background-image: url(/assets/img/query/header-blue.png); background-size: cover;}
+.main_content .showContentBg {background-image: url(/assets/img/query/content-blue.jpg); background-size: cover;}
+
+/* 报表主题 #f2f7fb */
+.main_content .report {border-collapse: collapse;}
+.main_content .report .titl {color:#000;background-color:#fff;border-color:#fff;}
+.main_content .report .head {color:#fff;background-color:#1e88e5;border-color:#b9bdce;}
+.main_content .report .dtlb {color:#000;background-color:#fffef8;border-color:#b9bdce;}
+.main_content .report .dtld {color:#000;background-color:#edf8fd;border-color:#b9bdce;}
+/* treeoverlay背景色 */
+.tree_content{
+  background-color: #fff;
+}
+.controllerTipIcon{
+  color: #737373;
+}
+.sidenav-background {
+  background-color: #9bcbf7;
+}
+.sidenav-background:hover {
+  background-color: #9bcbf7;
+}
+/* 主题after伪类背景色 */
+.gtjaqh-themes-after::after {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+}

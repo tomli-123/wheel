@@ -1,0 +1,33 @@
+<div style="height: 100%; overflow: auto;">
+
+
+  <!-- <main [metadata]="testJson.metadata"> </main> -->
+
+
+  <!-- <div style="background-color: aqua;width: 200px; height: 600px;;"></div>
+
+
+  <mat-tab-group>
+    <mat-tab label="First">
+      <div style="background-color: aqua;width: 200px; height: 600px;;"></div>
+    </mat-tab>
+    <mat-tab label="Second">
+      <div style="background-color: aqua;width: 200px; height: 600px;;"></div>
+    </mat-tab>
+    <mat-tab label="Third">
+      <div style="background-color: aqua;width: 200px; height: 600px;;"></div>
+    </mat-tab>
+  </mat-tab-group> -->
+  <!-- type="password" -->
+  <mat-form-field class="example-full-width">
+    <input matInput  placeholder="密码" [formControl]="_formControl">
+    <!-- <mat-error *ngIf="_formControl.hasError('pattern') && patternMsg">
+      {{patternMsg}}
+    </mat-error> -->
+  </mat-form-field>
+
+
+  <button (click)="test();">测试</button>
+
+
+</div>

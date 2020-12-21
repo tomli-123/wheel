@@ -1,0 +1,39 @@
+<div class="dyn-tabs">
+  <mat-tab-group #tabs [selectedIndex]="tabIndex" (selectedIndexChange)="_selectedIndexChange($event)"
+    (animationDone)="_animationDone()">
+    <ng-container *ngFor="let child of displayChilds;index as index">
+      <!-- *ngIf="_isLazy" -->
+      <mat-tab *ngIf="_isLazy" [disabled]="_isDisabled(index)">
+        <ng-template mat-tab-label>
+          <!-- <span class="tab-head">{{child['name']}}</span> -->
+          <span class="tab-head" [innerHTML]="child['name']|safeHtml"></span>
+          <span class="tab-del  qf icon-close" (click)="deleteTab(index)"
+            [style.display]="_showDelete(index) && !_isDisabled(index) ? 'block': 'none'"></span>
+        </ng-template>
+        <ng-template matTabContent>
+          <div style='overflow: auto;' [ngStyle]="{'height':tabHeight +'px'}" dynLayout [layout_data]="child.style"
+            [hidden]="_isChildHidden(child.id)">
+            <dynamic-container [metadata]="child" [parent]="_self()">
+
+            </dynamic-container>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab *ngIf="!_isLazy" [disabled]="_isDisabled(index)">
+        <ng-template mat-tab-label>
+          <span class="tab-head" [innerHTML]="child['name']|safeHtml"></span>
+          <span class="tab-del  qf icon-close" (click)="deleteTab(index)"
+            [style.display]="_showDelete(index) && !_isDisabled(index) ? 'block': 'none'"></span>
+        </ng-template>
+        <div style='overflow: auto;' [ngStyle]="{'height':tabHeight +'px'}" dynLayout [layout_data]="child.style"
+          [hidden]="_isChildHidden(child.id)">
+          <dynamic-container [metadata]="child" [parent]="_self()">
+
+          </dynamic-container>
+        </div>
+      </mat-tab>
+
+    </ng-container>
+  </mat-tab-group>
+</div>

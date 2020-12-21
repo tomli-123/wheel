@@ -1,0 +1,9 @@
+<div [innerHTML]="_css|safeHtml">
+
+</div>
+<div class="md_content div_content markdown_views" id="content" [ngStyle]="_ngStyle" [ngSwitch]="contentType" maxHeight
+  dialogMaxHeight [isActive]="_isActive" [isDialogActive]="_isDialogActive" appClazz [clazz]="_clazz">
+  <markdown *ngSwitchCase="'string'" class="variable-binding" [data]="data" lineNumbers [start]="1"></markdown>
+  <markdown *ngSwitchCase="'file'" class="variable-binding" [src]="path" lineNumbers [start]="1"
+    (ready)="mdOnReady($event)" (load)="mdOnLoad($event)" (error)="mdOnError($event)"></markdown>
+</div>

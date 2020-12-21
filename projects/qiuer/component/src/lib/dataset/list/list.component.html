@@ -1,0 +1,15 @@
+<div class="list_content" [ngClass]="{'shadowPadding':isShadow}" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <mat-selection-list  (selectionChange)="selectionChange($event)" #listDom [multiple]="isMultiple" cdkDropList  [cdkDropListDisabled]="!dragDrop" (cdkDropListDropped)="drop($event)" [ngClass]="{'hidden':!isSelect}">
+    <mat-list-option [ngClass]="{'shadow':isShadow}" class="list-item" cdkDrag *ngFor="let item of data; index as i" [ngStyle]="getStyle(item)" [disabled]="getDisabled(item)"
+      [selected]="isSelected(item)" [checkboxPosition]="checkboxPosition" [value]="item" (click)="_click(item,$event)"  (dblclick)="_dblclick(item,$event)">
+      <span class="ufHtml" [innerHTML]="getLabel(item)|safeHtml"></span>
+    </mat-list-option>
+  </mat-selection-list>
+
+
+  <mat-list  cdkDropList  [cdkDropListDisabled]="!dragDrop" (cdkDropListDropped)="drop($event)" [ngClass]="{'hidden':isSelect}"> 
+    <mat-list-item [ngClass]="{'shadow':isShadow}" class="list-item" cdkDrag *ngFor="let item of data" [ngStyle]="getStyle(item)" (click)="_click(item,$event)"  (dblclick)="_dblclick(item,$event)">
+      <span class="ufHtml" [innerHTML]="getLabel(item)|safeHtml"></span>
+    </mat-list-item>
+  </mat-list>
+</div>

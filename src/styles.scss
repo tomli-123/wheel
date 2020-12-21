@@ -1,0 +1,391 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
+@import "~@angular/cdk/overlay-prebuilt.css";
+@import "~@ag-grid-community/all-modules/dist/styles/ag-grid.css";
+@import "~@ag-grid-community/all-modules/dist/styles/ag-theme-balham.css";
+@import "@ag-grid-community/all-modules/dist/styles/ag-theme-material.css";
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+:focus {
+  outline: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+q:before,
+q:after {
+  content: "";
+}
+
+abbr,
+acronym {
+  border: 0;
+}
+
+@charset "utf-8";
+
+li {
+  list-style: none;
+}
+
+input {
+  height: 101%;
+}
+
+input,
+img {
+  border: none;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0px 0px 0px 0px;
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.absolute {
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 100;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.panelClass-select {
+  overflow-y: hidden !important;
+}
+
+.panelClass-select-option-box {
+  margin-top: 48px;
+  overflow: auto;
+  max-height: 208px;
+}
+
+.datepicker-input-invisible {
+  display: none;
+}
+
+.monthpicker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.monthpicker .mat-calendar-arrow {
+  display: none;
+}
+
+/*滚动条样式*/
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/*解决sticky定位导致漏出问题*/
+mat-header-row.mat-header-row {
+  z-index: 9;
+}
+
+.multiple-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
+.welcome {
+  text-align: center;
+  font-size: 56px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.mat-input-wrapper .mat-input-flex .mat-input-infix input {
+  height: 110% !important;
+}
+
+.sidenav-container {
+  padding-bottom: 70px;
+}
+
+//timepicker
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+}
+
+.cdk-overlay-container:empty {
+  display: none;
+}
+
+.cdk-global-overlay-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.cdk-overlay-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -o-transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -moz-transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 1;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    opacity: 0.6;
+  }
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.288);
+}
+
+.cdk-overlay-transparent-backdrop,
+.cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 0;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.cdk-global-scrollblock {
+  position: fixed;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+
+.mat-select-panel.hasfilter {
+  position: relative;
+  top: -50px;
+}
+
+//处理换行符
+.pre-line {
+  white-space: pre-line;
+}
+
+// .main_content {
+//   @media (max-width: 767px) {
+//     .buttonGroup_content,
+//     .div_content,
+//     .carouselPanel_content,
+//     .carouselPanel_content,
+//     .expansionPanel_content,
+//     .tabPanel_contant,
+//     .chart_Content,
+//     .html_content,
+//     .table_content {
+//       margin: 10px 10px 0;
+//     }
+//   }
+
+//   @media (max-width: 1280px) and (min-width: 768px) {
+//     .buttonGroup_content,
+//     .div_content,
+//     .carouselPanel_content,
+//     .carouselPanel_content,
+//     .expansionPanel_content,
+//     .tabPanel_contant,
+//     .chart_Content,
+//     .html_content,
+//     .table_content {
+//       margin: 14px 14px 0;
+//     }
+//   }
+
+//   @media (max-width: 599px) {
+//     .buttonGroup_content,
+//     .div_content,
+//     .carouselPanel_content,
+//     .carouselPanel_content,
+//     .expansionPanel_content,
+//     .tabPanel_contant,
+//     .chart_Content,
+//     .html_content,
+//     .table_content {
+//       margin: 0px;
+//     }
+//   }
+
+//   @media (min-width: 1281px) {
+//     .buttonGroup_content,
+//     .div_content,
+//     .carouselPanel_content,
+//     .carouselPanel_content,
+//     .expansionPanel_content,
+//     .tabPanel_contant,
+//     .chart_Content,
+//     .html_content,
+//     .table_content {
+//       margin: 18px 18px 0;
+//     }
+//   }
+// }
+
+//拖拽
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drop-box:last-child {
+  border: none;
+}
+
+.drop-list.cdk-drop-list-dragging .drop-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.u-editor-table-box-100 {
+  // ueditor table包裹层div的样式
+  width: 100% !important;
+  overflow: auto !important;
+}
+
+.mat-icon {
+  display: unset !important;
+}
+.mat-expansion-panel-header {
+  height: 48px;
+}

@@ -1,0 +1,39 @@
+.container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+
+.sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+}
+
+.header {
+  margin: 0;
+  height: 42px;
+  line-height: 42px;
+  display: flex;
+  h4 {
+    padding-left: 10px;
+    font-weight: 300;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .closeDialog {
+    width: 40px;
+    min-width: initial;
+    padding: 0;
+    // padding-right: -10px;
+    mat-icon {
+      display: inherit;
+    }
+  }
+}
+

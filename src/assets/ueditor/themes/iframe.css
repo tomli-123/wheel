@@ -1,0 +1,5 @@
+/*可以在这里添加你自己的css*/
+.u-editor-table-box-100 {
+  width: 100% !important;
+  overflow: auto !important;
+}

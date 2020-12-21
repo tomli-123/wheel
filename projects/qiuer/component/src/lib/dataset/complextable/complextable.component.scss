@@ -1,0 +1,324 @@
+@mixin font($size: 16px, $weight: 400) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@mixin view {
+  // view类型的报表
+  overflow: auto;
+  //加一个border
+
+  .mat-cell {
+    padding: 0 12px;
+    white-space: nowrap;
+    text-align: center;
+    flex: auto;
+    height: 36px;
+    line-height: 32px;
+    text-overflow: ellipsis;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    cursor: pointer;
+    justify-content: center;
+  }
+
+  .matRow {
+    min-height: initial;
+  }
+
+  .mat-header-row,
+  .mat-row {
+    padding: 0;
+    border: none;
+  }
+
+  .mat-header-row {
+    min-height: initial;
+
+    .mat-header-cell {
+      padding: 0 12px;
+      white-space: nowrap;
+      text-align: center;
+      flex: auto;
+      height: 40px;
+      line-height: 36px;
+      @include font(15px, 700);
+      text-overflow: ellipsis;
+      // border-right: 1px solid transparent;
+      border-bottom: 1px solid;
+      justify-content: center;
+    }
+  }
+
+  .mat-sort-header-container {
+    align-items: center;
+    justify-content: center;
+    padding-left: 18px !important;
+  }
+}
+
+.content {
+  // padding: 0px;
+  padding: 0px 5px;
+}
+
+.view {
+  // margin-top: 10px;
+  @include view;
+}
+
+.selText {
+  min-width: 140px;
+  font-size: 14px;
+}
+
+::ng-deep #keywords.filter.mat-focused .mat-form-field-label {
+  // visibility: hidden;
+  transform: perspective(100px);
+}
+
+.table_content #keywords ::ng-deep .mat-form-field-prefix {
+  opacity: 0.54;
+}
+
+#keywords ::ng-deep .mat-form-field-wrapper {
+  top: 3px;
+}
+
+.paginatorCon {
+  // 分页
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #666;
+  align-items: center;
+  position: relative;
+  min-height: 43px;
+  width: 100%;
+  padding: 0px;
+  box-shadow: none;
+  font-size: 14px;
+  overflow: hidden;
+
+  .selNum {
+    position: absolute;
+    left: 15px;
+    width: 100px;
+  }
+
+  .filterIcon {
+    transform: scale(0.7);
+    position: relative;
+    top: 2px;
+    left: -5px;
+  }
+
+  .paginatorField {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+    .mat-form-field-wrapper {
+      padding-bottom: 9px;
+    }
+
+    .mat-form-field-prefix {
+      .mat-icon {
+        font-size: 18px;
+      }
+    }
+
+    .mat-form-field-underline {
+      bottom: 16px;
+    }
+  }
+
+  .pagin {
+    position: absolute;
+    right: 5px;
+    font-size: 14px;
+
+    ::ng-deep .mat-paginator-page-size .mat-select-trigger {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 599px) {
+
+    // .paginatorField {
+    //   .mat-form-field-underline {
+    //     bottom: 16px;
+    //   }
+    // }
+    .selNum {
+      padding-left: 10px;
+      width: 50px;
+
+      .selText {
+        display: none;
+      }
+    }
+
+    .mat-paginator-range-label {
+      margin: 0;
+    }
+
+    .paginatorField.tableFootIpt {
+      left: 15px;
+      transform: translateX(0);
+
+      .mat-form-field-wrapper {
+        width: 100px;
+      }
+
+      .mat-form-field-label-wrapper {
+        font-size: 14px;
+      }
+    }
+
+    .mat-form-field-infix {
+      width: 80px;
+    }
+
+    .pagin {
+      .mat-paginator-range-label {
+        margin: 0 0 0 5px;
+      }
+
+      .mat-icon-button {
+        width: 26px;
+
+        .mat-paginator-increment {
+          margin-left: 12px;
+        }
+
+        .mat-paginator-decrement {
+          margin-left: 8px;
+        }
+      }
+
+      .mat-paginator-container {
+        .mat-paginator-page-size-select {
+          width: 40px;
+        }
+      }
+    }
+  }
+}
+
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0px;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-header-row {
+  z-index: 1;
+  background-color: inherit;
+}
+
+.column-header {
+  position: relative;
+
+  .header-icon {
+    transform: scale(0.7);
+    position: absolute;
+    bottom: 10px;
+    right: -5px;
+  }
+}
+
+.table_content #view .check-column {
+  width: 20px;
+  flex: none;
+}
+
+.table_content #view ::ng-deep .mat-checkbox-inner-container {
+  margin: 10px 14px;
+}
+
+
+/*主题颜色*/
+.primaryfont {
+  color: #1976d2 !important;
+}
+
+.accentfont {
+  color: #00acc1 !important;
+}
+
+.warnfont {
+  color: #bf360c !important;
+}
+
+.table_card {
+  padding: 0px 5px;
+  // box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  border-radius: 4px;
+  margin: 0px 18px 5px 18px;
+  // color: white;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+//  TODO  增加  relative 属性，使得加载效果在父级上作用
+.table_content {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  // margin-bottom: 2px;
+}
+
+.border {
+  border-right: 1px solid;
+}
+
+// :host {
+  .matCellSpan {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .mat-table {
+    width: fit-content;
+    min-width: 100%;
+  }
+
+  mat-cell,
+  mat-footer-cell,
+  mat-header-cell {
+    display: grid !important;
+  }
+
+
+// }
+
+
+.canSelectText {
+  user-select: auto !important;
+}
+
+.cantSelectText {
+  user-select: none !important;
+}
+
+td span{
+display: inline-block;
+width: 100%;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}

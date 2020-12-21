@@ -1,0 +1,21 @@
+<mat-form-field class="formField">
+	<mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+	<input matInput autocomplete="off" type="number" [formControl]="_formControl"  pattern="^\d{4}(0?[1-9]|1[0-2])$">
+	<!-- (change)="_onChange()" -->
+	<input matInput [matDatepicker]="monthpicker" [value]="_dateValue" class="datepicker-input-invisible" [min]="_minDate" [max]="_maxDate">
+	<mat-datepicker #monthpicker panelClass="monthpicker" startView="year"
+		(monthSelected)="chosenMonthpicker($event, monthpicker)"></mat-datepicker>
+	<button class="mat-datepicker-toggle" matSuffix mat-icon-button type="button"
+		(click)="openMonthpicker($event, monthpicker)" [disabled]="_formControl.disabled">
+		<span class="mat-button-wrapper"><svg class="mat-datepicker-toggle-default-icon ng-star-inserted"
+				fill="currentColor" focusable="false" height="24px" viewBox="0 0 24 24" width="24px">
+				<path
+					d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z">
+				</path>
+			</svg></span>
+	</button>
+	<button mat-button *ngIf="_hasClear && _formControl.value" matSuffix mat-icon-button
+		(click)="_formControl.setValue(null); $event.stopPropagation()" [disabled]="_formControl.disabled">
+		<mat-icon class="qf icon-close"></mat-icon>
+	</button>
+</mat-form-field>

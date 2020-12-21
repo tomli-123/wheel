@@ -1,0 +1,9 @@
+<div class="content">
+    <input class="input"  [matDatepicker]="datepicker" [formControl]="formControl" [placeholder]="label"  >
+	<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+	<mat-datepicker #datepicker></mat-datepicker>
+	<button mat-button *ngIf="hasClear && formControl.value" matSuffix mat-icon-button
+		(click)="formControl.setValue(null); $event.stopPropagation()">
+		<mat-icon class="qf icon-close"></mat-icon>
+    </button>
+</div>

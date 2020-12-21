@@ -1,0 +1,112 @@
+<!--<div class="absolute" [ngStyle]="bgimg" (click)="about=false;showabout()">-->
+<!--<div class="head-box" *ngIf="login&&about">-->
+<!--<div class="head-img"><span class="qf icon-account"></span></div>-->
+<!--<p class="user-name">欢迎</p>-->
+<!--<div class="password-box" style="margin-bottom: 5px">-->
+<!--<input type="text" class="user-id" #userName placeholder="账号/手机/邮箱" style="color:#FFFFFF;">-->
+<!--</div>-->
+<!--<div class="password-box">-->
+<!--<input type="password" class="user-password" #userPassword placeholder="密码"-->
+<!--#password style="color:#FFFFFF;" (keydown.enter)="loginHttp(userName.value,password.value)">-->
+<!--<button (click)="loginHttp(userName.value,password.value)" class="login-button"><span class="qf icon-arrow-right"></span>-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="head-box" *ngIf="!login&&about">-->
+<!--<img [src]="userback.avatar" class="head-img">-->
+<!--<p class="user-name">{{userback.name}}</p>-->
+<!--<p class="userback">您已登陆,欢迎回来</p>-->
+<!--<button (click)="returnHome()" class="userback-button"><span class="qf icon-home"-->
+<!--style=" margin-right: 5px;"></span>返回首页-->
+<!--</button>-->
+
+<!--</div>-->
+<!--<div class="footer-time">-->
+<!--<p class="time">{{date | date:'shortTime'}}</p>-->
+<!--<p class="date">{{date | date:'y/MM/dd'}}</p>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div>-->
+<!--<span class="qf icon-book logout" (click)="showabout()" style="z-index: 999;"></span>-->
+<!--</div>-->
+
+
+
+
+<div class="absolute father" [ngStyle]="{ 'background-image': bgimg,'height':height}" (click)="about=false;showabout()" >
+
+    <div style="height: 15%;">
+
+    </div>
+    <div style="height: 55%;position: relative;text-align: center">
+      <div *ngIf="login&&about">
+      <div class="head-img"><span class="qf icon-account"></span></div>
+      <div class="form-flex">
+        <p class="user-name">欢迎</p>
+        <div class="password-box" style="margin-bottom: 5px">
+          <input type="text" class="user-id" #userName placeholder="账号/手机/邮箱" style="color:#FFFFFF;">
+        </div>
+        <div class="password-box">
+          <input type="password" class="user-password" #userPassword placeholder="密码"
+                 #password style="color:#FFFFFF;" (keydown.enter)="loginHttp(userName.value,password.value)" >
+          <button (click)="loginHttp(userName.value,password.value)" class="login-button" ><span class="qf icon-arrow-right"></span>
+          </button>
+
+        </div>
+      </div>
+      </div>
+
+
+      <div *ngIf="!login&&about">
+        <img [src]="userback.avatar" class="head-img">
+        <div class="form-flex">
+          <p class="user-name">{{userback.name}}</p>
+          <p class="userback">您已登陆,欢迎回来</p>
+          <button (click)="returnHome()" class="userback-button"><span class="qf icon-home"
+                                                                       style=" margin-right: 5px;"></span>返回首页</button>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <div style="height: 20%;position: relative">
+      <div class="footer-time">
+        <p class="time">{{date | date:'shortTime'}}</p>
+        <p class="date">{{date | date:'y/MM/dd'}}</p>
+      </div>
+
+    </div>
+    <div style="height: 10%">
+
+    </div>
+</div>
+<div class="bookBox">
+  <span class="qf icon-book logout" (click)="showabout()" style="z-index: 999;"></span>
+
+
+</div>
+
+
+<div class="about">
+  <div class="about-content">
+    <h3>关于系统</h3>
+    <div>
+      <p>系统主要使用对象为中小机构以及个人大户，初期将提供盘中风险压力试算、极端行情风险试算、获取风险预警通知等功能。 是
+        <a href="http://www.gtjaqh.com" target="_blank">国泰君安期货</a>风控部与客户对接的桥梁。</p>
+      <p style="margin-top: 5px">使用系统后能在一定程度上帮助客户提前预测风险，做好资金和头寸的调整工作。</p>
+    </div>
+  </div>
+</div>
+<div class="error">
+  <div class="error-content">
+    <p>{{msg}}</p>
+  </div>
+</div>
+<div  style="z-index: 9999;position: absolute;bottom: 10px;right: 10px;color: #fff;font-weight: bold">
+  <a href="http://cdn.qiuer.org/software/ChromeSetup.exe" style="color: #fff;text-decoration:none;"><span   *ngIf="chromeMsg!==''">{{chromeMsg}}</span> <span class="qf icon-google-chrome"  style="margin-left: 5px;font-size: 24px;"></span></a>
+
+</div>

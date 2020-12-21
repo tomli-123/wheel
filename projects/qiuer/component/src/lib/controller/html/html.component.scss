@@ -1,0 +1,25 @@
+.formField {
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  height: 100%;
+  position: relative;
+  min-height: 67.5px
+}
+.label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - 30px);
+}
+
+.oneline {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.blank {
+  height: 0;
+  min-height: 0;
+}

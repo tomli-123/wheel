@@ -1,0 +1,27 @@
+.iconBtn {
+  cursor: pointer;
+}
+.iconContent {
+  margin: 0px 5px;
+  z-index:101;
+}
+
+.btnContent {
+  // width: 100%;
+  box-sizing: border-box;
+  // height: 100%;
+  position: relative;
+  min-width: 67.5px;
+  min-height:  10px;
+}
+.label {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+}
+.position {
+  position: absolute;
+}
+.transform {
+  transform: translate(-50%, -50%);
+}

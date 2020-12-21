@@ -1,0 +1,42 @@
+<div #overview fxLayout="row wrap" fxLayoutWrap style="position:relative;" class="overview">
+  <div class="font-div">
+    <div class="proc_header_left">
+      <span class="proc_border proc_border_bgcolor"></span>
+      <span class="qf icon-bookmark-check proc_border_color f_24"></span>
+      <span class="font_border_font">审批单</span>
+      <div class="overview_procid" *ngIf="scope['pid']">
+        <span class="overview_procid_font">编号:</span>
+        <i>{{scope.pid}}</i>
+      </div>
+    </div>
+    <div class="overview_header_right">
+      <span class="qf icon-qrcode" title="二维码" (click)="openShareDialog();"></span>
+      <span [title]="_fs.pack?'展开':'收起'" (click)="_packSwitch();" class="pack">
+        <mat-icon class="qf icon-menu-up-outline" [@btnActive]="_fs.pack?'top':'bottom'"></mat-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="overCard flow-theme-background" [hidden]="_fs.pack">
+    <div class="proc-qrcode">
+      <div class="proc_procid" *ngIf="scope['pid']">
+        <span class="proc_procid_font">编号:</span>
+        <i>{{scope.pid}}</i>
+      </div>
+      <div style="flex: 1;margin: auto;text-align: center;">
+        {{_fs.name || '测试流程'}}
+      </div>
+      <qr-code [value]="shareUrl" [size]="100"></qr-code>
+    </div>
+
+     <div style="position: relative" class="_proc_overview">
+      <div class="_notPrint">
+        <dynamic-container [metadata]="_formMetadata" [parent]="_self()"></dynamic-container>
+      </div>
+      <div class="_print">
+        <dynamic-container [metadata]="_printFormMetadata" [parent]="_self()"></dynamic-container>
+      </div>
+    </div>
+  </div>
+
+</div>

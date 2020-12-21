@@ -1,0 +1,8 @@
+<mat-radio-group class="example-radio-group radio_group" [formControl]="_formControl">
+  <mat-radio-button class="example-radio-button radio_button" [labelPosition]="position" *ngFor="let item of options"
+    [value]="item">
+    <span *ngIf="!_isHtmlLabel">{{item[_valueType.label]}}</span>
+    <span *ngIf="_isHtmlLabel" [innerHTML]='item[_valueType.label]|safeHtml'></span>
+
+  </mat-radio-button>
+</mat-radio-group>

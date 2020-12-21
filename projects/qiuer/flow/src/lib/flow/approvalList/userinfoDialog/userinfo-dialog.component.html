@@ -1,0 +1,57 @@
+<!-- 头像 姓名 岗位 座右铭 -->
+<div class="userinfo_content">
+  <div class="userinfo">
+    <div class="line-item">
+      <div style="display: flex;align-items: center;">
+        <div class="avatar-item"><img [src]="userInfo.avatar" alt=""></div>
+        <div>
+          <div class="name-item">{{userInfo.name}}</div>
+          <div class="post-item">{{userInfo.post}}</div>
+        </div>
+      </div>
+      <!-- <div class="name-item">{{userInfo.name}}</div>
+      <div class="avatar-item"><img [src]="userInfo.avatar" alt=""></div> -->
+      <div class="qrcode-item" (click)="opnecard();">
+        <span class="qf icon-qrcode" title="名片二维码" [ngStyle]="{'display':!showCode?'block':'none'}"></span>
+        <span class="qf icon-keyboard-backspace" title="返回" [ngStyle]="{'display':showCode?'block':'none'}"></span>
+      </div>
+    </div>
+    <div class="line">
+      <span>部门　:　　</span>
+      <span [title]="userInfo.deptname || ''"
+        (dblclick)="$event.stopPropagation();copy($event.target)">{{userInfo.deptname}}</span>
+    </div>
+    <!-- <div class="line">
+      <span>职务　:　　</span>
+      <span [title]="userInfo.post || ''" (dblclick)="$event.stopPropagation();copy($event.target)">{{userInfo.post}}</span>
+    </div> -->
+    <div class="line">
+      <span>手机　:　　</span>
+      <span [title]="userInfo.cellphone || ''"
+        (dblclick)="$event.stopPropagation();copy($event.target)">{{userInfo.cellphone}}</span>
+    </div>
+    <div class="line">
+      <span>固话　:　　</span>
+      <span [title]="userInfo.telephone || ''"
+        (dblclick)="$event.stopPropagation();copy($event.target)">{{userInfo.telephone}}</span>
+    </div>
+    <div class="line">
+      <span>传真　:　　</span>
+      <span [title]="userInfo.fax || ''"
+        (dblclick)="$event.stopPropagation();copy($event.target)">{{userInfo.fax}}</span>
+    </div>
+    <div class="line" style="margin-bottom:0px;">
+      <span>邮件　:　　</span>
+      <span [title]="userInfo.email || ''"
+        (dblclick)="$event.stopPropagation();copy($event.target);">{{userInfo.email}}</span>
+    </div>
+  </div>
+
+  <div class="vcode" *ngIf="showCode">
+    <div class="font">
+      微信扫一扫
+    </div>
+    <qr-code [value]="codeUrl" [size]="150"></qr-code>
+  </div>
+
+</div>

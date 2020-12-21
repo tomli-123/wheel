@@ -1,0 +1,37 @@
+<mat-form-field class="formField" [ngStyle]="{'width':tip?'90%':'100%'}"
+  [ngClass]="{'noPaddingRight':tip}" [title]="_formControl.value?_formControl.value[_valueType.label]:''">
+  <mat-label>{{label}} <mat-icon *ngIf="required && requiredWidthStar" style="color: red;">*</mat-icon></mat-label>
+  <mat-select  [formControl]="_formControl" (openedChange)="openedChange(search);"
+    [panelClass]="{'_hasFilter':_hasFilter}">
+    <div class="filter-select-wrap">
+      <div class="filter-box row-cutline" [ngClass]="{'hideFilter': !_hasFilter}">
+        <div class="suffix"></div>
+        <input class="filter-input" [placeholder]="_filterPlaceholder" #search type="text" autocomplete="off">
+      </div>
+
+      <div [ngClass]="{'filter-option': _hasFilter}">
+        <mat-option *ngIf="_emptyLabel">{{_emptyLabel}}</mat-option>
+        <mat-option *ngFor="let option of options| filter : search.value :_filterField" [value]="option">
+         <span *ngIf="!_isHtmlLabel">{{option[_valueType.label] || option}}</span>
+         <span *ngIf="_isHtmlLabel" [innerHTML]='option[_valueType.label]|safeHtml'></span>
+        </mat-option>
+      </div>
+    </div>
+  </mat-select>
+  <button mat-button *ngIf="_hasClear && _formControl.value" matSuffix mat-icon-button
+    (click)="_formControl.setValue(null); $event.stopPropagation()" [disabled]="_formControl.disabled">
+    <mat-icon class="qf icon-close"></mat-icon>
+  </button>
+  <mat-error *ngIf="_formControl.hasError('pattern') && !_formControl.hasError('required') && patternMsg">
+      {{requiredMsg}}
+    </mat-error>
+    <mat-error *ngIf="_formControl.hasError('required') && patternMsg">
+      {{patternMsg}}
+    </mat-error>
+</mat-form-field>
+
+<button *ngIf="tip" mat-icon-button style="width:10%;" class="controllerTipIcon" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="tip"
+  [matTooltipClass]="{'pre-line':true}" (mouseenter)="mouserOnHelpButton = true;"
+  (mouseleave)="mouserOnHelpButton = false;" [color]="mouserOnHelpButton?'primary':''" (click)="tooltip.toggle();">
+  <mat-icon class="qf icon-help"></mat-icon>
+</button>

@@ -1,0 +1,11 @@
+<div class="formField" [ngClass]="{'noPaddingRight':tip}">
+  <span class="label">
+    <mat-checkbox [checked]="value" [labelPosition]="_position||'after'" [formControl]="_formControl">{{label}}
+    </mat-checkbox>
+  </span>
+
+  <button *ngIf="tip" mat-icon-button style="width:10%;" class="iconContent" [disableRipple]="true" #tooltip="matTooltip" [matTooltip]="tip"
+    [matTooltipClass]="{'pre-line':true}" [matTooltipPosition]="'above'" class="mat-button">
+    <mat-icon class="qf icon-help"></mat-icon>
+  </button>
+</div>

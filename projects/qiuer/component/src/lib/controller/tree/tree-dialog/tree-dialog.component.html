@@ -1,0 +1,25 @@
+<div class="dlg-body treeDialog-content">
+  <div mat-dialog-title class="dlg-header">
+    <span class="dlg-msg">已选：{{checklistSelection.length}}个</span>
+    <span fxFlex></span>
+    <button mat-button class="closeDialog sureBtn" tabindex="-1" (click)="submit()">
+      <mat-icon class="qf icon-check"></mat-icon>
+    </button>
+    <button mat-button class="closeDialog cancelBtn" tabindex="-1" [mat-dialog-close]="false">
+      <mat-icon class="qf icon-close"></mat-icon>
+    </button>
+  </div>
+  <form>
+    <mat-form-field class="sidenav-search" floatPlaceholder="never" id="keywords">
+      <mat-icon matSuffix class="qf"
+        [ngClass]="{'icon-magnify':filter.value.length<1,'icon-close':filter.value.length>0}"
+        (click)="claerFilter(filter)"></mat-icon>
+      <input matInput #filter tabindex="-1" (input)="searchTree(filter.value)"
+        [placeholder]="filterValue.length > 0 ? '' : '搜索'">
+    </mat-form-field>
+  </form>
+  <div class="dialog-content" dialogMaxHeight style="height: 458px;overflow: auto;">
+    <tree-select [multSelect]="multSelect" [filter]="filterValue" [items]="items" [value]="value"
+      [replaceData]="replaceData" (checkEvent)="checkEvent($event)"></tree-select>
+  </div>
+</div>

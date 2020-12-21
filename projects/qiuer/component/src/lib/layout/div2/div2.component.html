@@ -1,0 +1,11 @@
+
+<div [innerHTML]="_css|safeHtml">
+
+</div>
+<div  >
+	<div [class]="child.class" *ngFor="let child of childs;">
+		<dynamic-container [metadata]="child" [parent]="_self()">
+
+		</dynamic-container>
+	</div>
+</div>

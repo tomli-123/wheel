@@ -1,0 +1,10 @@
+<!-- <div class="formField">
+  <ueditor #ueditor [formControl]="_formControl" (onReady)="_UeReady($event)"
+    [config]="{readonly :readonly , toolbars: toolbars ,initialFrameHeight :ueditorHeight,autoHeightEnabled:false}"
+    [loadingTip]="'加载中……'" [delay]="300"></ueditor>
+</div> -->
+
+<div class="formField">
+  <ueditor #ueditor [formControl]="_formControl" (onReady)="_UeReady($event)" [config]="UE_config"
+    [loadingTip]="'加载中……'" [delay]="300"></ueditor>
+</div>

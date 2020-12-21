@@ -1,0 +1,9 @@
+<div [fxLayout]="fxLayout" [fxLayoutAlign]="fxLayoutAlign" fxLayoutWrap class="loop_content" maxHeight dialogMaxHeight [isActive]="_isActive" 
+[isDialogActive]="_isDialogActive" [repaint]="layoutChange"  [ngStyle]="_ngStyle" appClazz  [clazz]="_clazz">
+ 
+  <div dynLayout [layout_data]="child.style" *ngFor="let child of childs;" >	
+		<dynamic-container  [metadata]="child" [parent]="_self()">
+		</dynamic-container>
+  </div>
+  
+</div>

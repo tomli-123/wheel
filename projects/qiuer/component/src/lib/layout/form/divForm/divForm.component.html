@@ -1,0 +1,9 @@
+<div class="divForm_content" class="div_content " maxHeight dialogMaxHeight [isActive]="_isActive"
+  [isDialogActive]="_isDialogActive" [ngStyle]="_ngStyle" appClazz [clazz]="_clazz">
+  <form #formContent [formGroup]="_formGroup" novalidate fxLayout="row wrap" fxLayoutWrap>
+    <div dynLayout [hidden]="_isChildHidden(child.id)" [layout_data]="child.style" *ngFor="let child of childs;">
+      <dynamic-container [metadata]="child" [parent]="_self()">
+      </dynamic-container>
+    </div>
+  </form>
+</div>
